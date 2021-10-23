@@ -1,12 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Event
 
 def index(request):
-    event=Event.object.all()
+    event=Event.objects.all()
     response = {'event':event}
     return render(request, 'index.html', response)
 
 def event_detail(request,id):
-    event=Event.object.get(id=id)
-    response={'event':event}
+    response={'event':get_object_or_404(Event,pk=id)}
     return render(request, 'event.html', response)

@@ -1,0 +1,7 @@
+.card-img-top {
+    width:100%;
+    height: 230px;
+}
+.row{
+    min-height:300px !important;
+}
