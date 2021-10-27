@@ -25,4 +25,4 @@ urlpatterns = [
     path('', include(home)),
     path('event/', include(event)),
     re_path(r'^$', index_home, name='index')
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
