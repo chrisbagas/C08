@@ -27,6 +27,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(home)),
     path('event/', include(event)),
-    path('leaderboard/', include(leaderboard)),
     re_path(r'^$', index_home, name='index')
 ]
