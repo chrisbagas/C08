@@ -148,7 +148,3 @@ ENV/
 # End of https://www.gitignore.io/api/python,intellij+iml
 
 #Ignore files for Lab1
-/lab-1/.idea/
-/lab-1/db.sqlite3/
-/lab-1/hello_name/migrations/*.py
-db.sqlite3

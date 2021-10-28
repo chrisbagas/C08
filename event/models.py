@@ -6,4 +6,4 @@ class Event(models.Model):
     Media=models.CharField(max_length=30)
     Sinopsis=models.TextField(default="")
     Deskripsi=models.TextField()
-    Card_Image=models.FileField(null=True,blank=True, upload_to='images/')
+    Card_Image=models.FileField(null=True,blank=True, upload_to='images/event')
