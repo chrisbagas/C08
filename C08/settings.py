@@ -25,10 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG=1
+DEBUG = 1
 
 ALLOWED_HOSTS = ['*']
-
 
 
 # Application definition
@@ -42,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'event',
+    'leaderboard',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +85,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 
 # Password validation
@@ -132,7 +131,6 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_URL = '/media/'
-
 
 
 # Default primary key field type
