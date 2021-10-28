@@ -17,12 +17,16 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf.urls.static import static
 from django.conf import settings
+
 import home.urls as home
 import event.urls as event
+import leaderboard.urls as leaderboard
 from home.views import index as index_home
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(home)),
     path('event/', include(event)),
+    path('leaderboard/', include(leaderboard)),
     re_path(r'^$', index_home, name='index')
 ]
