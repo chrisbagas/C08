@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'home',
     'event',
     'leaderboard',
+    'profile_dashboard'
 ]
 
 MIDDLEWARE = [
