@@ -31,7 +31,7 @@
             <div class="row justify-content-center h-100">
                 {% for e in event %}
                 <div class="col-lg-3 col-md-8 col-sm-12 m-3">
-                    <a href="{% url 'detail' e.id%}">
+                    <a href="{% url 'event:detail' e.id%}">
                         <div class="card bg-dark text-light h-100">
                             {% if e.Card_Image %}
                                 <img src="{{e.Card_Image.url}}" class="card-img-top image-fluid mx-auto h-50" alt="">
@@ -50,5 +50,7 @@
             </div>
         </div>
     </section>
+
+    <button href="{% url 'event:event_form' %}">form</button>
 </body>
 </html>
