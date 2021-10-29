@@ -31,6 +31,10 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend', 
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,14 +42,21 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
     'crispy_forms',
     'home',
     'event',
     'leaderboard',
     'profile_dashboard',
-    'login_form'
+    'login_form',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -159,3 +170,5 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'corumbucket'
 AWS_S3_FILE_OVERWRITE = False
 AWS_QUERYSTRING_AUTH = False
+
+LOGIN_REDIRECT_URL= '/'
