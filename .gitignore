@@ -150,3 +150,7 @@ ENV/
 #Ignore files for Lab1
 
 db.sqlite3
+
+/node_modules
+
+tailwind.config.js
