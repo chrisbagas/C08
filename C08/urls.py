@@ -22,11 +22,13 @@ import home.urls as home
 import event.urls as event
 import leaderboard.urls as leaderboard
 import profile_dashboard.urls as profile
+import event.urls as event
 from home.views import index as index_home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(home)),
+    path('event/', include(event)),
     path('profile/', include(profile)),
     re_path(r'^$', index_home, name='index')
 ]
