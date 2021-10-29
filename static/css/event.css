@@ -1,3 +1,6 @@
+a{
+    text-decoration: none;
+}
 .row{
     min-height:500px !important;
 }
@@ -8,4 +11,13 @@
 }
 .col{
     max-height: 600px;
+}
+#foot{
+    max-height: 59px;
+}
+.back{
+    background-color:#DDFFCC;
+}
+.warn{
+    color:#FF8800;
 }

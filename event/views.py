@@ -14,13 +14,13 @@ def event_detail(request,id):
 
 def event_form(request):
     form = EventForm(request.POST or None, request.FILES or None)
-    # data = {}
-    # if request.is_ajax():
-    #     if form.is_valid():
-    #         form.save()
-    #         data['name'] = form.cleaned_data.get('name')
-    #         data['status'] = 'ok'
-    #         return JsonResponse(data)
+    data = {}
+    if request.is_ajax():
+        if form.is_valid():
+            form.save()
+            data['name'] = form.cleaned_data.get('name')
+            data['status'] = 'ok'
+            return JsonResponse(data)
             
     response = {
         'form': form,

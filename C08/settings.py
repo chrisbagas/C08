@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
+    "crispy_forms",
+    "crispy_tailwind",
     'home',
     'event',
     'leaderboard',
@@ -135,7 +136,8 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 
-CRISPY_TEMPLATE_PACK='bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK="tailwind"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

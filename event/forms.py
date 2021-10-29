@@ -1,5 +1,6 @@
 from django import forms
 from .models import Event
+from django.contrib.admin.widgets import AdminDateWidget
 
 
 class EventForm(forms.ModelForm):
@@ -10,9 +11,15 @@ class EventForm(forms.ModelForm):
         fields = [
             'Nama',
             'Tanggal',
+            'Waktu',
             'Media',
-            'Sinopsis',
+            'Tipe',
             'Deskripsi',
             'Card_Image',
             'Page_Image'
         ]
+        widgets={
+            'Tanggal':forms.DateInput(format=('%d-%m-%Y'), attrs={'type': 'date'}),
+            'Waktu':forms.TimeInput(attrs={'type': 'time'})
+        }
+        
