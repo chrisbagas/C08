@@ -7,7 +7,6 @@ from .forms import CreateUser
 
 # Create your views here.
 
-
 def signupPage(request):
     if request.user.is_authenticated:
         return redirect('index')
