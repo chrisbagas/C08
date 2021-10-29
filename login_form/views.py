@@ -2,14 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required  
 
 from .forms import CreateUser
 
 # Create your views here.
 
 
-def signup(request):
+def signupPage(request):
     if request.user.is_authenticated:
         return redirect('index')
     else:
@@ -22,10 +21,10 @@ def signup(request):
                 messages.success(request, 'Akun telah dibuat dengan username ' + user + ". Silakan login.")
                 return redirect('login')
         context = {'form': form}
-        return render(request, 'signup_form.html', context)
+        return render(request, 'signup.html', context)
 
 
-def login(request):
+def loginPage(request):
     if request.user.is_authenticated:
         return redirect('index')
     else:
@@ -41,7 +40,7 @@ def login(request):
             else:
                 messages.info(request, 'username atau password salah. ')
         context = {}
-        return render(request, 'login_form.html', context)
+        return render(request, 'login.html', context)
 
 def logout(request):
     logout(request)
