@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Edit Profile - Corum</title>
+    <style></style>
+  </head>
+  <body>
+    <nav></nav>
+    <div class="container">
+        <h2>Edit Profile</h2>
+        <img src="{{ user.profile.image.url }}">
+    </div>
+    
+    <div class="container">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="user-box">
+                <ul id="left">
+                    <li id="username">
+                        <label for="id_username">Username</label>
+                        {{ user.username }}
+                    </li>
+                    <li id="first_name">
+                        <label for="id_first_name">First Name</label>
+                        {{ u_form.first_name }}
+                    </li>
+                </ul>
+                
+                <ul id="right">
+                    <li id="email">
+                        <label for="id_email">Email</label>
+                        {{ user.email }}
+                    </li>
+                    <li id="last_name">
+                        <label for="id_last_name">Last Name</label>
+                        {{ u_form.last_name }}
+                    </li>
+                </ul>
+
+                <ul id="middle">
+                    <li id="photo">
+                        <label for="id_image">Profile Photo</label>
+                        {{ p_form.image }}
+                    </li>
+                    <li id="bio">
+                        <label for="id_bio">Bio</label>
+                        {{ p_form.bio }}
+                        <p id="warning"></p>
+                    </li>
+                </ul>
+ 
+                <div id="bottom">
+                    <p id="updated"></p>
+                    <input type="submit" id="submit-button" value="Save Changes">
+                </div>
+                
+            </div>
+        </form>
+    </div>
+  </body>
+</html>
