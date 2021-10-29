@@ -7,3 +7,4 @@ class Event(models.Model):
     Sinopsis=models.TextField(default="")
     Deskripsi=models.TextField()
     Card_Image=models.ImageField(null=True,blank=True, upload_to='images/event')
+    Page_Image=models.ImageField(null=True,blank=True, upload_to='images/event')

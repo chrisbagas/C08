@@ -24,12 +24,14 @@ import leaderboard.urls as leaderboard
 import profile_dashboard.urls as profile
 import login_form.urls as loginform
 
+import event.urls as event
 from home.views import index as index_home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(home)),
     path('signup/', include(loginform)),
+    path('event/', include(event)),
     path('profile/', include(profile)),
     re_path(r'^$', index_home, name='index')
 ]
