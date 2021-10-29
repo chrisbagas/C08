@@ -33,5 +33,6 @@ urlpatterns = [
     path('signup/', include(loginform)),
     path('event/', include(event)),
     path('profile/', include(profile)),
+    path('accounts/', include('allauth.urls')),
     re_path(r'^$', index_home, name='index')
 ]
