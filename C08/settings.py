@@ -25,10 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG=1
+DEBUG = 1
 
 ALLOWED_HOSTS = ['*']
-
 
 
 # Application definition
@@ -40,8 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'home',
     'event',
+    'leaderboard',
+    'profile_dashboard'
 ]
 
 MIDDLEWARE = [
@@ -85,7 +87,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 
 # Password validation
@@ -133,7 +134,7 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 
-
+CRISPY_TEMPLATE_PACK='bootstrap4'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
