@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend', 
+    'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
@@ -48,9 +48,9 @@ INSTALLED_APPS = [
     "crispy_tailwind",
     'home',
     'event',
-    'leaderboard',
     'profile_dashboard',
     'login_form',
+    'mini_survey',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -151,7 +151,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
-CRISPY_TEMPLATE_PACK="tailwind"
+CRISPY_TEMPLATE_PACK = "tailwind"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -174,4 +174,4 @@ AWS_STORAGE_BUCKET_NAME = 'corumbucket'
 AWS_S3_FILE_OVERWRITE = False
 AWS_QUERYSTRING_AUTH = False
 
-LOGIN_REDIRECT_URL= '/'
+LOGIN_REDIRECT_URL = '/'
