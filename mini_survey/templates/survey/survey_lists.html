@@ -1,12 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mini Survey Page</title>
-</head>
-<body>
-  <h1>This is a mini survey page</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Mini Survey - Corum</title>
+<link rel="stylesheet" href="{% static '/css/survey_lists.css' %}" />
+{% endblock meta %}
+
+{% block content %}
+<div class="container p-4">
+  <div class="survey-header">
+    <div class="survey-header-left">
+      <h3>Survey List</h3>
+      <p>{{survey_count}} survey available</p>
+    </div>
+    <div class="survey-header-right">
+      <a href="{% url 'create' %}"">Create New Survey</a>
+    </div>
+  </div>
+
+  {% if surveys %}
+  {% for survey in surveys %}
+  <article class="surveycard green">
+    <div class="surveycard__text t-dark">
+      <h1 class="surveycard__title green">{{ survey.title }}</h1>
+      <div class="surveycard__subtitle small">
+        Created on {{ survey.pub_date }} by {{ survey.creator }}
+      </div>
+      <div class="surveycard__bar"></div>
+      <div class="surveycard__preview-txt">{{ survey.description }}</div>
+      <ul class="surveycard__tagbox">
+        <li class="tag__item"><a href="{% url 'details' survey.id %}">Vote</a></li>
+        <li class="tag__item"><a href="{% url 'results' survey.id %}">View Result</a></li>
+      </ul>
+    </div>
+  </article>
+  {% endfor %}
+  {% endif %}
+</div>
+{% endblock content %}
