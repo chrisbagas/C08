@@ -5,6 +5,10 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def profile(request):
+    return render(request, 'profile.html')
+
+@login_required
+def edit_profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,
