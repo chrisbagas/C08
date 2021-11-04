@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+
+{% block title %} Home utk forum {% endblock title %}
+
+{% block forum_content %}
+<!-- <div class="card shadow-lg rounded">
+    <div class="list-group list-group-flush">
+        {% for forum in forums %}
+        <div class="list-group-item p-2">
+            <div class="row align-items-start">
+                <div class="col-12 col-md-4">
+                    <div class="row">
+                        <div class="col-2 col-md-3 ext-center align-self-center d-sm-block d-none">
+                            <img style="width: 2.5rem; height: 2.5rem;"
+                                class="align-self-center img-fluid rounded-circle"
+                                src="https://www.gravatar.com/avatar/8ffba22ca3f8fa42883f175c42b9049f?s=128&d=mm&r=g"
+                                alt="Avatar">
+                        </div>
+                        <div class="col-sm-9 col-md-8 col-12">
+                            <p class="align-self-center align-middle pt-sm-3 pt-0">
+                                {{ forum.author }}
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-9 col-md-6 pt-sm-2 align-self-end">
+                    <p class=""><a href="{% url 'forum_detail' forum.pk %}">{{ forum.title }}</a></p>
+                </div>
+                <div class="d-grid d-md-block gap-1 col-2 col-md-2 align-middle pt-sm-2">
+                    <button class="btn btn-primary btn-sm d-print-none" type="submit">edit</button>
+                    <button class="btn btn-danger btn-sm d-print-none" type="submit">delete</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div> -->
+
+
+<!-- coba-coba dulu gan -->
+
+<style>
+  div * {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: #b0e795;
+  }
+
+  /* div>ul>li {
+    transition: background-color 1s;
+  } */
+
+  div>ul>li.forum-list:hover {
+    background-color: #fbf2c9;
+  }
+
+  div>ul>li.forum-list {
+    background-color: #d9e9d0;
+    transition: background-color 1s;
+  }
+
+   div.card {
+    background-color: #d9e9d0;
+    transition: background-color 1s;
+  }
+
+  /* @media screen and (max-width: 400px) {
+    .btn-text {
+      display: none;
+    }
+  } */
+</style>
+
+
+<div class="mb-4 d-flex">
+  <a href=" {% url 'home' %}" style="text-decoration: none; color: #FFA700;">
+    <h2> Forum </h2>
+  </a>
+</div>
+
+<!-- forum form -->
+<div class="container-coba-collapse my-3">
+  <p>
+    <button class="btn-sm forum-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseForumForm"
+      aria-expanded="false" aria-controls="collapseForumForm" data-bs-auto-close="inside">
+      New Forum
+    </button>
+  </p>
+  <div class="collapse" id="collapseForumForm">
+    <div class="card card-body border-0 mt-1">
+      <div class="form-floating mb-3">
+        <input class="form-control" id="floatingInput" placeholder="Title">
+        <label for="floatingInput">Title</label>
+      </div>
+      <div class="form-floating mb-3">
+        <textarea class="form-control" placeholder="Leave your question here" id="floatingTextarea"></textarea>
+        <label for="floatingTextarea">Question</label>
+      </div>
+      <div class="btn text-end p-0">
+        <button class="btn btn-sm btn-success" type="submit">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Forum List -->
+<div class="card shadow border-0 mt-3">
+  <ul class="list-group list-group-flush">
+    {% for forum in forums|dictsortreversed:'time_modified' %}
+    <li class="list-group-item forum-list" id="{{ forum.pk }}">
+      <div class="container">
+        <div class="row">
+          <!-- avatar -->
+          <div class="col-1 d-none d-sm-flex align-self-center p-0 me-1" style="width: 50px; height: 50px;">
+            <img class="rounded-circle"
+              src="https://www.gravatar.com/avatar/8ffba22ca3f8fa42883f175c42b9049f?s=128&d=mm&r=g" alt="">
+          </div>
+          <div class="col-12 col-sm-10 col-md-3 ps-sm-3">
+            <div class="row row-cols-1 row-cols-md-1">
+              <!-- author -->
+              <div class="col p-1 d-flex">
+                <p class="author fs-6"> {{ forum.author }} </p>
+              </div>
+              <!-- time modified -->
+              <div class="col p-1 d-none d-sm-flex text-muted">
+                {% load humanize %}
+                <small> {{ forum.time_modified | naturaltime }} </small>
+              </div>
+            </div>
+          </div>
+          <!-- title -->
+          <div class="col col-sm-9 col-md-6 d-flex align-items-center p-1 m-0">
+            <a href="{% url 'forum_detail' forum.pk %}" style="text-decoration: none; color: rgb(33, 37, 41);">
+              <strong> {{ forum.title | truncatewords_html:20 }} </strong>
+            </a>
+          </div>
+          <div
+            class="col-sm-3 col-md-2 flex-wrap gap-1 text-end align-self-center justify-content-center text-sm-center align-content-center p-0 m-0">
+            <!-- edit button -->
+            <button type="button" class="btn btn-sm btn-outline-primary edit-btn px-1 py-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-pencil-square d-inline d-sm-none" viewBox="0 0 16 16">
+                <path
+                  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path fill-rule="evenodd"
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+              </svg><span class="btn-text d-none d-sm-inline">Edit</span>
+            </button>
+            <!-- delete button -->
+            <button type="button" class="btn btn-sm btn-outline-danger delete-btn px-1 py-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-trash d-inline d-sm-none" viewBox="0 0 16 16">
+                <path
+                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z">
+                </path>
+                <path fill-rule="evenodd"
+                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z">
+                </path>
+              </svg><span class="btn-text d-none d-sm-inline">Delete</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </li>
+  </ul>
+</div>
+
+{% endblock forum_content %}

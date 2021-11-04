@@ -23,6 +23,7 @@ import event.urls as event
 import profile_dashboard.urls as profile
 import login_form.urls as loginform
 import mini_survey.urls as survey
+import forum.urls as forum
 
 import event.urls as event
 from home.views import index as index_home
@@ -35,5 +36,6 @@ urlpatterns = [
     path('profile/', include(profile)),
     path('survey/', include(survey)),
     path('accounts/', include('allauth.urls')),
+    path('forum/', include(forum)),
     re_path(r'^$', index_home, name='index')
 ]
