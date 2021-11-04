@@ -8,19 +8,21 @@ from .models import Option, Survey, Vote
 
 def lists(request):
     survey_list = Survey.objects.all()
+    survey_count = survey_list.count()
     # Make pagination to show 10 survey per page
     paginator = Paginator(survey_list, 10)
     page_num = request.GET.get('page')
     surveys = paginator.get_page(page_num)
     context = {
-        'surveys': surveys,
+        'surveys': survey_list,
+        'survey_count': survey_count
     }
     return render(request, 'survey/survey_lists.html', context)
 
 
 def details(request, survey_id):
     survey = get_object_or_404(Survey, pk=survey_id)
-    option_count = survey.choice_set.count()
+    option_count = survey.option_set.count()
     context = {
         'survey': survey,
         'option_count': range(0, option_count)
@@ -36,13 +38,13 @@ def results(request, survey_id):
     return render(request, 'survey/survey_results.html', context)
 
 
-@login_required()
+@login_required(login_url='/signup/login')
 def create(request):
     if request.method == 'POST':
         form = CreateSurveyForm(request.POST)
         if form.is_valid:
             survey = form.save(commit=False)
-            survey.owner = request.user
+            survey.creator = request.user
             survey.save()
             new_option1 = Option(
                 survey=survey, text=form.cleaned_data['option1']).save()
@@ -59,7 +61,7 @@ def create(request):
     return render(request, 'survey/survey_create.html', context)
 
 
-@login_required()
+@login_required(login_url='/signup/login')
 def edit(request, survey_id):
     survey = get_object_or_404(Survey, pk=survey_id)
     if request.user != survey.creator:
@@ -80,7 +82,7 @@ def edit(request, survey_id):
     return render(request, 'survey/survey_edit.html', context)
 
 
-@login_required()
+@login_required(login_url='/signup/login')
 def delete(request, survey_id):
     survey = get_object_or_404(Survey, pk=survey_id)
     if request.user != survey.creator:
@@ -90,7 +92,7 @@ def delete(request, survey_id):
     return redirect('/survey')
 
 
-@login_required()
+@login_required(login_url='/signup/login')
 def add_option(request, survey_id):
     survey = get_object_or_404(Survey, pk=survey_id)
     if request.user != survey.creator:
@@ -112,7 +114,7 @@ def add_option(request, survey_id):
     return render(request, 'survey/add_option.html', context)
 
 
-@login_required()
+@login_required(login_url='/signup/login')
 def vote(request, survey_id):
     survey = get_object_or_404(Survey, pk=survey_id)
     option_id = request.POST.get('option')

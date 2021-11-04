@@ -1,27 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create new Survey</title>
-</head>
-<body>
-  <h1>Add a new Survey here</h1>
-  <form action="" method="POST">
-    {% csrf_token %}
-    <label for="title">Title</label><br>
-    <input type="text" name="title" required><br>
-    <label for="description">Description</label><br>
-    <input type="text" name="description" required><br>
-    <label for="first_option">Option 1</label><br>
-    <input type="text" name="first_option" required><br>
-    <label for="second_option">Option 2</label><br>
-    <input type="text" name="second_option" required><br>
-    <label for="third_option">Option 3</label><br>
-    <input type="text" name="third_option" required><br>
-    <input type="submit" value="Submit">
-  </form>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block meta %}
+<title>Create New Survey - Corum</title>
+{% endblock meta %}
+
+{% block content %}
+<div class="container">
+  <div class="row center">
+      <div class="col-md-6 offset-md-3">
+          <h2>Create new poll</h2>
+          <form action="" method="POST">
+              {% csrf_token %}
+              {% for field in form %}
+              <div class="form-group">
+                  {{ field.errors }}
+                  {{ field.label_tag }}
+                  {{ field }}
+              </div>
+              {% endfor %}
+              <br/>
+              <button type="submit" class="btn btn-success">Add Poll</button>
+              <a class="btn btn-danger" href="{% url 'lists' %}" role="button">Cancel</a>
+          </form>
+      </div>
+  </div>
+</div>
+{% endblock content %}
