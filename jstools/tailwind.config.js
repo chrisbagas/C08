@@ -14,5 +14,5 @@ module.exports = {
       extend: {},
   },
   variants: {},
-  plugins: [],
+  plugins: [require('@tailwindcss/aspect-ratio')],
 }

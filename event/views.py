@@ -10,7 +10,7 @@ def index(request):
 
 def event_detail(request,id):
     response={'event':get_object_or_404(Event,pk=id)}
-    return render(request, 'event.html', response)
+    return render(request, 'detail.html', response)
 
 def event_form(request):
     form = EventForm(request.POST or None, request.FILES or None)

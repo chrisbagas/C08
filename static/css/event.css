@@ -16,8 +16,11 @@ a{
     max-height: 59px;
 }
 .back{
-    background-color:#DDFFCC;
+    background-color:#4FE8B4;
 }
 .warn{
     color:#FF8800;
+}
+.btn{
+    width:100%;
 }

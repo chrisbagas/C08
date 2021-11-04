@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -9,7 +10,11 @@
     <nav></nav>
     <div class="container">
         <h2>Edit Profile</h2>
+        {% if user.profile.image %}
         <img src="{{ user.profile.image.url }}">
+        {% else %}
+        <img src="{% static '/image/default_profpic.png' %}">
+        {% endif %}
     </div>
     
     <div class="container">
