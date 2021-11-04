@@ -30,7 +30,7 @@ from home.views import index as index_home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(home)),
-    path('signup/', include(loginform)),
+    path('', include(loginform)),
     path('event/', include(event)),
     path('profile/', include(profile)),
     path('survey/', include(survey)),
