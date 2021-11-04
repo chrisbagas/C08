@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "crispy_tailwind",
     'home',
     'event',
+    'forum',
     'profile_dashboard',
     'login_form',
     'mini_survey',
@@ -55,6 +56,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'django.contrib.humanize',
 ]
 
 SITE_ID = 1
@@ -174,3 +176,7 @@ AWS_S3_FILE_OVERWRITE = False
 AWS_QUERYSTRING_AUTH = False
 
 LOGIN_REDIRECT_URL = '/'
+
+# Formatting time and date
+from django.conf.locale.en import formats as en_formats
+en_formats.DATETIME_FORMAT = 'jS M Y fA'
