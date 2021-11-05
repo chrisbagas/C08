@@ -35,10 +35,12 @@ def edit_post(request, slug):
     form = BlogPostForm(request.POST, request.FILES, instance=postedit)
     if request.method == 'POST' and form.is_valid:
         temp = form.save(commit=False)
+        temp.author = request.user
         temp.save()
         return HttpResponseRedirect('/blog')
     context = {
-        'form': form
+        'form': form,
+        'post': post
     }
     return render(request, 'blog/edit_post.html', context)
 
