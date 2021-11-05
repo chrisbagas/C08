@@ -117,7 +117,6 @@ def vote(request, survey_id):
     survey = get_object_or_404(Survey, pk=survey_id)
     option_id = request.POST.get('option')
     if not survey.vote_requirement(request.user):
-        messages.error(request, "You already voted for this survey!")
         return redirect('/survey')
 
     if option_id:
@@ -125,7 +124,6 @@ def vote(request, survey_id):
         vote = Vote(user=request.user, survey=survey, option=option)
         vote.save()
     else:
-        messages.error(request, "No option selected!")
         return redirect('detail', survey_id)
 
     context = {
