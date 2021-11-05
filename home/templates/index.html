@@ -1,141 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Home</title>
-    <style>
-        *{
-            box-sizing: border-box;
-        }
+{% extends 'base.html' %}
+{% load static %}
 
-        .jumbotron {
-            min-height: 600px;
-            padding-top: 2rem;
-            background-color: #65CCB8;
-            display: grid;
-            place-items: center;
-            align-content: center;
-        }
+{% block meta %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static '/css/myStyle.css' %}" />
+<title>Home</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static '/js/mainHome.js' %}"></script>
+{% endblock meta %}
 
-        #about {
-            min-height: 600px;
-            padding: 40px 0;
-            display: grid;
-            place-items: center;
-            background-color: #65CCB8;
-        }
-        #about .container {
-            box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-            border-radius: 10px;
-            background: rgb(43,215,217);
-            background: linear-gradient(132deg, rgba(193,255,215,1) 0%, rgba(216,233,168,1) 100%);
-            max-width: 700px;
-        }
-
-        /* https://codingyaar.com/bootstrap-profile-card-1/ */
-        .card {
-            min-height: 18rem;
-            margin-top: 2em;
-            padding: 1.5em 0.5em 0.5em;
-            border-radius: 2em;
-            text-align: center;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-            transition: 0.3s;
-        }
-        .card img {
-            width: 65%;
-            border-radius: 50%;
-            margin: 0 auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .card:hover {
-            box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-        }
-
-        /* END of https://codingyaar.com/bootstrap-profile-card-1/ */
-
-        #member {
-            padding: 40px 0;
-            min-height: 800px;
-            display: grid;
-            place-items: center;
-            background-color: #65CCB8;
-        }
-
-        #feedback {
-            display: grid;
-            place-items: center;
-            min-height: 500px;
-            background-color: #65CCB8;
-        }
-
-        #feedback .container {
-            box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-            border-radius: 10px;
-            background: rgb(43,215,217);
-            background: linear-gradient(132deg, rgba(193,255,215,1) 0%, rgba(216,233,168,1) 100%);
-            max-width: 800px;
-            padding: 50px 0;
-        }
-
-        @media screen and (max-width: 770px) {
-            .jumbotron {
-                min-height: 400px;
-            }
-
-            #about {
-                min-height: 400px;
-            }
-
-            #about #description {
-                font-size: 12px;
-            }
-
-            #about .container {
-                max-width: 400px;
-            }
-        }
-
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        function myFunction() {
-            var x = document.getElementById("status-container");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            }
-        } 
-
-        $(document).ready(function(){
-            $("#click").click(function(){
-                $.ajax({
-                    url: "",
-                    statusCode: {
-                        200: function() {
-                            // Success! Reload the page
-                            $("#status").text("You must be signed in if you want to give the review");
-                        },
-                        401: function() {
-                            // Unauthorized, redirect to home
-                            window.location.href = "/feedback";
-                        },
-                    }, 
-                });
-            });
-        });
-    </script>
-</head>
-<body>
-    <header>
-        {% include 'navbar.html' %}
-    </header>
-
+{% block content %}
     <main>
 
         <!-- Jumbotron -->
@@ -277,9 +151,4 @@
         </section>
         
     </main>
-    
-    <footer>
-        {% include 'footer.html' %}
-    </footer>
-</body>
-</html>
+{% endblock content %}
