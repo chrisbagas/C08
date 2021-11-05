@@ -1,10 +1,23 @@
-<footer class="text-dark pt-5 pb-5" style="background-color: #C1FFD7;">
-  <div class="container">
-    <div class="row justify-content-center text-center d-flex align-items-center">
-      <div class="col-sm-8" >
-          <img src="../static/image/logo-ui-2.png" alt="Universitas Indonesia" style="height: 5rem;" style="display: inline-block;">
-          <p style="display: inline-block; padding-left: 10px;">Created by &copy; Kelompok C08</p>
-      </div>
-    </div>
+{% load static %}
+<footer class="d-flex flex-column flex-wrap justify-content-between align-items-center p-3 border-top">
+  <ul class="nav list-unstyled d-flex justify-content-end">
+    <li class="nav-item d-flex align-items-center">
+      <a class="nav-link" href="/">
+        About Us
+      </a>
+    </li>
+  
+    <li class="nav-item d-flex align-items-center">
+      <a class="nav-link" href="https://github.com/chrisbagas/C08" target="_blank">
+        <i class='bx bxl-github' style="font-size: 32px;"></i>
+      </a>
+    </li>
+  </ul>
+
+  <div>
+    <a href="/" class="d-flex align-items-center text-muted text-decoration-none">
+      <img width="72" height="72" src="{% static 'image/corum.png' %}" />
+      <span class="ms-3 text-muted">&copy; 2021 Corum</span>
+    </a>
   </div>
 </footer>
