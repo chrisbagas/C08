@@ -17,7 +17,7 @@ Modul ini akan digunakan untuk mengidentifikasi pengguna website. Pada modul ini
 - Dashboard Profil<br>
 Modul ini digunakan oleh user yang sudah login untuk memodifikasi data pada profil milik user tersebut, diantaranya mencakup nama, deskripsi diri, dan menambahkan foto profil.
 - Events<br>
-Modul ini akan berisi daftar event-event yang akan diadakan oleh platform kami. Admin akan menambahkan event-event yang akan berlangsung di modul ini. Event-event yang diadakan memiliki tema seputar Covid-19. Event-event tersebut dapat berupa talkshow, seminar, dan lain sebagainya yang dapat diikuti oleh pengguna yang sudah log in. Modul ini akan menampilkan informasi seperti tempat, waktu, media dan deskripsi umum event.
+Modul ini akan berisi daftar event-event yang akan diadakan oleh platform kami. Admin akan menambahkan event-event yang akan berlangsung di modul ini. Event-event yang diadakan memiliki tema seputar Covid-19. Event-event tersebut dapat berupa talkshow, seminar, dan lain sebagainya yang dapat diikuti oleh pengguna. Modul ini akan menampilkan informasi seperti tempat, waktu, media dan deskripsi umum event.
 - Blog Content<br>
 Modul ini akan menampilkan daftar blog-blog yang ada di dalam website ini serta isi dari masing-masing blog tersebut dalam sub url-sub url yang bersangkutan. Daftar blog tersebut ditampilkan dalam bentuk kartu-kartu. Setiap blog diimplementasikan sebagai sebuah model yang memiliki judul, subjudul, gambar (opsional), dan isi. Saat sebuah blog ditambahkan, judul, subjudul, gambar blog (jika ada), tanggal post-nya, dan nama user yang membuat blognya akan ditampilkan. Saat seorang user mengklik judulnya, isi dari blognya akan ditampilkan di dalam sebuah sub url.
 - Forum<br>
