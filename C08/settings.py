@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     "crispy_tailwind",
     'home',
     'event',
+    'blog',
+    'ckeditor',
     'forum',
     'profile_dashboard',
     'login_form',
