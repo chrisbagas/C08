@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'base.html' %}
+    
+{% block meta %}
     <title>Blog</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
     {% load static %}
     <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
-</head>
-
-<body>
+{% endblock meta %}
+    
+{% block content %}
     <div class="post-wrapper filter transition duration-700 container bg-beige-lightest m-auto text-left box-border max-w-full">
         
         
@@ -98,8 +96,6 @@
         </div>
     </div>
     {% endfor %}
-    
-</body>
-{% load static %}
-<script src="{% static 'blog/js/delete_post.js' %}" crossorigin="anonymous"></script>
-</html>
+    {% load static %}
+    <script src="{% static 'blog/js/delete_post.js' %}" crossorigin="anonymous"></script>
+{% endblock content %}
