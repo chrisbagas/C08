@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'base.html' %}
+    
+{% block meta %}
     <title>Blog</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
-</head>
-<body>
+{% endblock meta %}
+    
+{% block content %}
     <div>
         <div class="grid m-auto max-w-max">
             <div>
@@ -19,7 +18,7 @@
                 </div>
             </div>
             <div class="mt-5">
-                <form action="" enctype="multipart/form-data" method="post">
+                <form enctype="multipart/form-data" method="post">
                     {% csrf_token %}
                     {{ form.media }}
                     <div class="shadow">
@@ -85,5 +84,4 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+{% endblock content %}

@@ -12,9 +12,9 @@
     <div class="md:flex justify-between flex-row-reverse md:py-20 md:px-10 2xl:mx-42 mx-8 my-16 bg-green-300 shadow-lg rounded-lg" id="isi">
         <div class="md:w-1/2 md:aspect-w-4 md:aspect-h-2 aspect-w-2 aspect-h-2">
             {% if event.Page_Image %}
-                <img src="{{event.Page_Image.url}}" class="object-cover img-fluid max-width: 100% shadow-lg rounded-lg bg-white" alt="">
+                <img src="{{event.Page_Image.url}}" class="object-cover img-fluid max-width: 100% shadow-lg rounded-lg bg-white gambar" alt="">
             {% else %}
-                <img src="{% static '/image/404.png' %} " class="object-cover img-fluid max-width: 100% shadow-lg rounded-lg bg-white" alt="">
+                <img src="{% static '/image/404.png' %} " class="object-cover img-fluid max-width: 100% shadow-lg rounded-lg bg-white gambar" alt="">
             {% endif%}
         </div>
         <!-- left -->

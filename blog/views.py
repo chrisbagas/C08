@@ -16,7 +16,7 @@ def post(request, slug):
     response = {'post': post}
     return render(request, 'blog/post.html', response)
 
-@login_required(login_url='/admin/login/')
+@login_required(login_url='/login/')
 def add_post(request):
     form = BlogPostForm(request.POST or None)
     if request.method == 'POST' and form.is_valid:
@@ -29,7 +29,7 @@ def add_post(request):
     }
     return render(request, 'blog/add_post.html', context)
 
-@login_required(login_url='/admin/login/')
+@login_required(login_url='/login/')
 def edit_post(request, slug):
     post = BlogPost.objects.get(slug=slug)
     form = BlogPostForm(request.POST or None, instance=post)
@@ -42,7 +42,7 @@ def edit_post(request, slug):
     }
     return render(request, 'blog/edit_post.html', context)
 
-@login_required(login_url='/admin/login/')
+@login_required(login_url='/login/')
 def delete_post(request, slug):
     post = BlogPost.objects.get(slug=slug)
     if request.method == 'POST':
