@@ -55,13 +55,6 @@
   perspective: 12px;
 }
 
-img {
-  width: 1280px;
-  height: 720px;
-  object-fit: cover;
-
-}
-
 .delete-modal-wrapper {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
