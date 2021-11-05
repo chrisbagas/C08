@@ -4,7 +4,7 @@ from .models import Event
 from .forms import EventForm
 
 def index(request):
-    event=Event.objects.all()
+    event=Event.objects.all().order_by('-created')
     response = {'event':event}
     return render(request, 'index.html', response)
 
@@ -18,7 +18,7 @@ def event_form(request):
     if request.is_ajax():
         if form.is_valid():
             form.save()
-            data['name'] = form.cleaned_data.get('name')
+            data['Nama'] = form.cleaned_data.get('Nama')
             data['status'] = 'ok'
             return JsonResponse(data)
             

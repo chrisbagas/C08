@@ -9,3 +9,4 @@ class Event(models.Model):
     Deskripsi=models.TextField()
     Card_Image=models.ImageField(null=True,blank=True, upload_to='images/event')
     Page_Image=models.ImageField(null=True,blank=True, upload_to='images/event')
+    created = models.DateTimeField(auto_now_add=True)
