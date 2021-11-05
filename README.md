@@ -36,7 +36,6 @@ Modul ini merupakan halaman utama yang akan menampilkan deskripsi singkat mengen
 - Mengajukan pertanyaan baru pada halaman forum
 - Menjawab pertanyaan pengguna lain yang berada pada halaman forum
 - Mengunjungi halaman dashboard profil dan memodifikasi profil 
-- Mendaftar event yang tersedia pada halaman events
 - Membuat survei baru pada halaman mini survey
 - Menjawab survei yang tersedia pada halaman mini survey
 ## Referensi:
