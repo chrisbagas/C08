@@ -31,6 +31,7 @@ Modul ini merupakan halaman utama yang akan menampilkan deskripsi singkat mengen
 - Mengunjungi Home page
 - Mengunjungi Sign up/Sign in page
 - Tidak memiliki logo profil pada navbar
+- Mengunjungi detail Events
 #### Signed in User
 - Membuat post baru pada halaman blog
 - Mengajukan pertanyaan baru pada halaman forum
