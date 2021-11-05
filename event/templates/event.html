@@ -9,7 +9,7 @@
     <title>Event</title>
 {% endblock meta %}
 {% block content %}
-    <section class="text-black p-5 text-center text-sm-start back">
+    <section class="text-black p-5 text-center text-sm-start" style="background-color:#4FE8B4;">
         <div class="container">
             <div class="d-sm-flex align-items-center justify-content-between">
                 <div>
@@ -41,8 +41,8 @@
             <div class="row justify-content-center h-100">
                 {% for e in event %}
                 <div class="col-xl-3 col-lg-4 col-md-8 col-sm-12 m-3">
-                    <a href="{% url 'event:detail' e.id%}">
-                        <div class="card text-black h-100 back">
+                    <a href="{% url 'event:detail' e.id%}" class="link_detail" style="text-decoration:none;">
+                        <div class="card text-black h-100" style="background-color:#4FE8B4;">
                             {% if e.Card_Image %}
                                 <img src="{{e.Card_Image.url}}" class="object-cover card-img-top image-fluid mx-auto h-50" alt="">
                             {% else %}

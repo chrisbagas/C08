@@ -8,6 +8,7 @@ const waktu = document.getElementById('id_Waktu')
 const media = document.getElementById('id_Media')
 const tipe = document.getElementById('id_Tipe')
 const deskripsi = document.getElementById('id_Deskripsi')
+const url_event = document.getElementById('id_url')
 const card_image = document.getElementById('id_Card_Image')
 const page_image = document.getElementById('id_Page_Image')
 
@@ -32,6 +33,7 @@ form.addEventListener('submit', e=>{
     fd.append('Waktu', waktu.value)
     fd.append('Media', media.value)
     fd.append('Tipe', tipe.value)
+    fd.append('url', url_event.value)
     fd.append('Deskripsi', deskripsi.value)
     fd.append('Card_Image', card_image.files[0])
     fd.append('Page_Image', page_image.files[0])
@@ -43,7 +45,7 @@ form.addEventListener('submit', e=>{
         data: fd,
         success: function(response){
             console.log(response)
-            const sText = `successfully saved ${response.name}`
+            const sText = `successfully saved`
             handleAlerts('success', sText)
             setTimeout(()=>{
                 alertBox.innerHTML = ""
@@ -53,6 +55,7 @@ form.addEventListener('submit', e=>{
                 waktu.value = ""
                 media.value = ""
                 tipe.value = ""
+                url_event.value = ""
                 deskripsi.value = ""
                 card_image.value = ""
                 page_image.value = ""

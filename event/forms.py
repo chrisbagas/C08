@@ -14,6 +14,7 @@ class EventForm(forms.ModelForm):
             'Waktu',
             'Media',
             'Tipe',
+            'url',
             'Deskripsi',
             'Card_Image',
             'Page_Image'
