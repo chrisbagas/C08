@@ -33,6 +33,7 @@ urlpatterns = [
     path('', include(home)),
     path('', include(loginform)),
     path('event/', include(event)),
+    path('blog/', include('blog.urls')),
     path('profile/', include(profile)),
     path('survey/', include(survey)),
     path('forum/', include(forum)),
