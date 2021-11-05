@@ -6,7 +6,7 @@ from .forms import EventForm
 def index(request):
     event=Event.objects.all().order_by('-created')
     response = {'event':event}
-    return render(request, 'index.html', response)
+    return render(request, 'event.html', response)
 
 def event_detail(request,id):
     response={'event':get_object_or_404(Event,pk=id)}
