@@ -39,5 +39,6 @@ Modul ini merupakan halaman utama yang akan menampilkan deskripsi singkat mengen
 - Mengunjungi halaman dashboard profil dan memodifikasi profil 
 - Membuat survei baru pada halaman mini survey
 - Menjawab survei yang tersedia pada halaman mini survey
+- Mengisi form feedback pada halaman home
 ## Referensi:
 https://kotakode.com/
