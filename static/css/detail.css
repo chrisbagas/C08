@@ -1,0 +1,18 @@
+.gambar {
+    background-color: red;
+    /* width: 100%;
+    padding-top: 56.25%;  /* 1:1 Aspect Ratio */
+
+    position: relative;
+}
+img{
+    width: 100%;
+}
+/* If you want text inside of the container */
+/* img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+} */ 
