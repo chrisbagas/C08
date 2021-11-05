@@ -15,11 +15,11 @@
         <!-- Jumbotron -->
         <section class="jumbotron text-center">
             {% if request.user.is_authenticated %}
-                <h1>
+                <h1 id="logged-in">
                     Hello, {{ request.user.username }}. Welcome Back.
                 </h1>
             {% else %}
-                <h1>
+                <h1 id="anonymous">
                     Hello, Welcome to our website.
                 </h1>
             {% endif %}
