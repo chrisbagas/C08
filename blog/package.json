@@ -1,0 +1,20 @@
+{
+    "name": "blog",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build:css": "Tailwind build static/blog/css/main.css -o static/blog/css/style.css"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "autoprefixer": "^10.4.0",
+        "postcss": "^8.3.11",
+        "tailwindcss": "^2.2.17"
+    },
+    "dependencies": {
+        "@tailwindcss/forms": "^0.3.4"
+    }
+}

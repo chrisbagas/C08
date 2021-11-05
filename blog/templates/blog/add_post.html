@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+</head>
+<body>
+    <div>
+        <div class="grid m-auto max-w-max">
+            <div>
+                <div class="pt-4 px-4">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Add a blog post</h3>
+                    <p class="mt-1 text-sm text-gray-600">
+                        This post will be displayed publicly, so please mind what you're about to share.
+                    </p>
+                </div>
+            </div>
+            <div class="mt-5">
+                <form action="" enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    <div class="shadow">
+                        <div class="px-4 py-5 bg-white space-y-6">
+
+                            <div class="grid grid-cols-3 gap-6">
+                                <div class="col-span-3">
+                                    <label class="block text-sm font-medium text-gray-700">
+                                        Title
+                                    </label>
+                                    <div class="mt-1 flex shadow-sm">
+                                        {{ form.title }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-6">
+                                <div class="col-span-3">
+                                    <label class="block text-sm font-medium text-gray-700">
+                                        Subtitle
+                                    </label>
+                                    <div class="mt-1 flex shadow-sm">
+                                        {{ form.subtitle }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">
+                                    Thumbnail
+                                </label>
+                                <p class="mt-2 text-sm text-gray-500">
+                                    Upload a picture that relates with your blog post. Potrait-oriented pictures are preferred.
+                                </p>
+                                {{ form.thumbnail }}
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">
+                                    Body
+                                </label>
+                                <p class="mt-2 text-sm text-gray-500">
+                                    Write your post here.
+                                </p>
+                                <div class="mt-1">
+                                    {{ form.body }}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="px-4 py-3 bg-gray-50 text-right">
+                            <input type="submit"
+                                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" value="Save">
+                        </input>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="block">
+                <div class="py-5">
+                    <div class="border-t border-gray-200"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
