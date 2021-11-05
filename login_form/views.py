@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout as django_logout
+from django.contrib.auth.decorators import login_required
 
 from .forms import CreateUser
 
@@ -41,6 +42,7 @@ def loginPage(request):
         context = {}
         return render(request, 'login.html', context)
 
+@login_required
 def logout(request):
-    logout(request)
+    django_logout(request)
     return redirect('login')
