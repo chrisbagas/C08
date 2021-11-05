@@ -22,6 +22,13 @@
             box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
         }
 
+        img {
+            margin-top: 30px;
+            margin-bottom: 10px;
+            height: 120px;
+            border: 10px
+        }
+
         .form-control-label {
             margin-bottom: 0
         }
@@ -92,7 +99,7 @@
                 <img src="{% static '/image/default_profpic.png' %}" class="rounded-circle">
                 {% endif %}
                 <div class="card">
-                    <form class="form-card" action="" method="POST">
+                    <form class="form-card" id="form" action="" method="POST">
                         {% csrf_token %}
                         <div class="row justify-content-between text-left">
                             <div class="form-group col-sm-6 flex-column d-flex" id="username-container"> 
@@ -143,5 +150,32 @@
             </div>
         </div>
     </div>
+    <script
+        src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+        crossorigin="anonymous">
+    </script>
+    <script>
+        const form = document.getElementById('form');
+        form.addEventListener("submit", submitHandler);
+    
+        function submitHandler(e) {
+            e.preventDefault();
+            $.ajax({
+                type        : 'POST', 
+                url         : "{% url 'edit_profile' %}",
+                data        : $('#form').serialize(), 
+                dataType    : 'json', 
+                success     : successFunction
+            });
+        }
+    
+        function successFunction(msg) {
+            if (msg.message === 'success') {
+                alert('Success!');
+
+            }
+        }
+    </script>
   </body>
 </html>
