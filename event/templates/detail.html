@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/detail.css' %}" />
+    <title>{{ event.Nama }}</title>
+{% endblock meta %}
+{% block content %}
+    <!-- hero -->
+    <div class="md:flex justify-between flex-row-reverse md:py-20 md:px-10 2xl:mx-42 mx-8 my-16 bg-green-300 shadow-lg rounded-lg" id="isi">
+        <div class="md:w-1/2 md:aspect-w-4 md:aspect-h-2 aspect-w-2 aspect-h-2">
+            {% if event.Page_Image %}
+                <img src="{{event.Page_Image.url}}" class="object-cover img-fluid max-width: 100% shadow-lg rounded-lg bg-white" alt="">
+            {% else %}
+                <img src="{% static '/image/404.png' %} " class="object-cover img-fluid max-width: 100% shadow-lg rounded-lg bg-white" alt="">
+            {% endif%}
+        </div>
+        <!-- left -->
+        <div class="md:w-1/2 mb-10 md:mb-0 p-6 sm: py-0" >
+            <h2 class="text-3xl md:text-4xl lg:text-6xl text-white mb-6">{{event.Nama}}</h2>
+            <div class="flex mb-3">
+                <i class='bx bxs-calendar text-xl md:text-2xl flex-initial'></i>
+                <p class='text-xl md:text-2xl flex-initial pl-3'>{{event.Tanggal}}</p>
+            </div>
+        
+            <div class="flex mb-3">
+                <i class='bx bxs-time text-xl md:text-2xl flex-initial'></i>
+                <p class='text-xl md:text-2xl flex-initial pl-3'>{{event.Waktu}}</p>
+            </div>
+            <h4 class="mb-6 text-xl md:text-2xl lg:text-3xl">
+                {{event.Deskripsi}}
+            </h4>
+        </div>
+        <!-- right -->
+    </div>
+    <a href="{% url 'event:index' %}" >
+        <button type="button" class="btn btn-outline-primary btn-lg 2xl:mx-42 mx-16 mb-16">Back</button>
+    </a>
+{% endblock content %}

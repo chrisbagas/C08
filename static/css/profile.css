@@ -1,0 +1,52 @@
+body {
+    color: #000;
+    overflow-x: hidden;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+h2{
+    color:#57BA98;
+    font-weight: bold;
+}
+
+#card {
+    padding: 30px 40px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    border: none !important;
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+img {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    height: 120px;
+    border: 10px
+}
+
+label {
+    font-weight: bold;
+}
+
+p {
+    padding: 8px 15px;
+    border-radius: 5px !important;
+    margin: 5px 0px;
+    box-sizing: border-box;
+    font-size: 18px !important;
+    font-weight: 300
+}
+
+
+button {
+    font-size: 15px !important;
+    font-weight: 400;
+    height: 43px;
+    background-color: #57BA98;
+    border-color: #57BA98;
+    border-radius: 3px;
+    color: #fff;
+    max-width: 120px;
+}

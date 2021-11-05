@@ -148,3 +148,8 @@ ENV/
 # End of https://www.gitignore.io/api/python,intellij+iml
 
 #Ignore files for Lab1
+
+db.sqlite3
+
+node_modules
+

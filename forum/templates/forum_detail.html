@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% block title %} {{ forum.title }} {% endblock title%}
+{% block forum_detail_content %}
+
+<style>
+  body {
+    background-color: #c2c26d;
+  }
+
+  div * {
+    margin: 0;
+    padding: 0;
+  }
+
+  a,
+  a>h2 {
+    margin: 0;
+    padding: 0;
+  }
+</style>
+
+<div class="mb-4 d-flex">
+  <a href=" {% url 'home' %}?hashtag={{forum.pk}}" style="text-decoration: none; color: rgb(33, 37, 41);">
+    <h2> {{ forum.title }} </h2>
+  </a>
+</div>
+
+<!-- <div class="ps-3 bg-white pt-3 pb-1 container align-self-center rounded shadow-lg">
+  <div class="row">
+    <div class="d-sm-flex d-none justify-content-center align-self-center col-1" style="width: 50px; height: 50px;">
+      <img class="rounded-circle"
+        src="https://www.gravatar.com/avatar/8ffba22ca3f8fa42883f175c42b9049f?s=128&d=mm&r=g" alt="Avatar" />
+    </div>
+    <div class="ml-md-4 col align-self-end">
+      <div class="d-flex flex-wrap">
+        <p class="fw-bold mb-3 me-4 fs-4 align-self-center">{{ forum.author }}</p>
+        {% load humanize %}
+        <p class="text-muted small align-self-center">
+          {{ forum.time_modified | naturaltime }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-flex justify-content-center col-12"></div>
+    <div class="ml-0 ml-md-4 col">
+      <div class="">
+        <p class="">{{ forum.body | linebreaks }}</p>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="card shadow border-0">
+  <div class="card-body">
+    <div class="card-text">
+      <div class="container">
+        <div class="row">
+          <!-- avatar -->
+          <div class="col-1 col-sm-1 d-none d-sm-flex align-self-center p-0 me-1" style="width: 60px; height: 60px;">
+            <a href="#2" style="border: 0;">
+              <img style="width: 60px; height: 60px;" class="rounded-circle p-0"
+                src="https://www.gravatar.com/avatar/8ffba22ca3f8fa42883f175c42b9049f?s=128&d=mm&r=g" alt="avatar">
+            </a>
+          </div>
+          <div class="col-12 col-sm-10 ps-sm-2 align-self-center">
+            <div class="d-flex flex-wrap">
+              <!-- author -->
+              <div class="flex-column pe-2">
+                <p class="author fs-6"><strong>{{ forum.author }}</strong> </p>
+              </div>
+              <!-- time modified -->
+              <div class="flex-column small text-muted align-self-center">
+                {% load humanize %}
+                <small> {{ forum.time_modified | naturaltime }} </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-0 col-sm-1"></div>
+          <!-- body -->
+          <div class="col mt-2">
+            <div class="p"> {{ forum.body | linebreaks }} </div>
+          </div>
+          <div class="col-12 text-end">
+            <!-- edit button -->
+            <button type="button" class="btn btn-sm btn-outline-primary edit-btn m-0 px-1 py-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-pencil-square d-inline d-sm-none" viewBox="0 0 16 16">
+                <path
+                  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path fill-rule="evenodd"
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+              </svg><span class="btn-text d-none d-sm-inline">Edit</span>
+            </button>
+            <!-- delete button -->
+            <button type="button" class="btn btn-sm btn-outline-danger delete-btn m-0 px-1 py-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-trash d-inline d-sm-none" viewBox="0 0 16 16">
+                <path
+                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z">
+                </path>
+                <path fill-rule="evenodd"
+                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z">
+                </path>
+              </svg><span class="btn-text d-none d-sm-inline">Delete</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% if User.is_authenticated %}
+<div class="your-answer my-4">
+  <div class="row p-1 m-0">
+    <div class="col-1 d-none d-sm-flex avatar p-0" style="width: 50px; height: 50px;">
+      <img class="rounded-circle" src="https://www.gravatar.com/avatar/8ffba22ca3f8fa42883f175c42b9049f?s=128&d=mm&r=g"
+        alt="">
+    </div>
+    <div class="col align-self-center">
+      <div class="col-12 fw-bold"> Your Answer </div>
+      <div class="input-group col-12">
+        <textarea class="form-control" placeholder="Leave your answer here..." id="forum-answer"></textarea>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-sm btn-outline-success m-1 mt-2" type="submit">Reply</button>
+</div>
+{% endif %}
+
+
+<div class="container my-5">
+  <h4><b> 0 Answer </b></h4>
+</div>
+
+
+<!-- <div class="container my-5">
+  <a href=" {% url 'home' %}?hashtag={{forum.pk}}" class="btn btn-sm btn-outline-dark" role="button">back</a>
+</div> -->
+
+{% endblock forum_detail_content %}
+
+<!-- comments -->
+
+{% block forum_comment %}
+
+ <div class="card shadow border-0">
+  <div class="card-body">
+    <div class="card-text">
+      <div class="container">
+        <div class="row">
+          <!-- avatar -->
+          <div class="col-1 col-sm-1 d-none d-sm-flex p-0 me-1 align-items-center" style="width: 50px; height: 50px;">
+            <a href="#2" style="border: 0;">
+              <img style="width: 50px; height: 50px;" class="rounded-circle p-0"
+                src="https://www.gravatar.com/avatar/8ffba22ca3f8fa42883f175c42b9049f?s=128&d=mm&r=g" alt="avatar">
+            </a>
+          </div>
+          <div class="col-12 col-sm-10 ps-sm-2 align-self-center">
+            <div class="row">
+              <!-- author -->
+              <div class="col pe-2">
+                <p class="author fs-6"><strong>{{ forum.author }}</strong> </p>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-0 col-sm-1"></div> -->
+          <!-- body -->
+          <div class="col-12 ps-sm-5 mt-2">
+            <div class="p"> {{ forum.body | linebreaks }} </div>
+          </div>
+          <!-- time modified -->
+          <!-- <div class="col-0 col-sm-1"></div> -->
+          <div class="col-12 ps-sm-5 small text-muted align-self-center">
+            {% load humanize %}
+            <small> {{ forum.time_modified | naturaltime }} </small>
+          </div>
+          <div class="col-12 text-end">
+            <!-- edit button -->
+            <button type="button" class="btn btn-sm btn-outline-primary edit-btn m-0 px-1 py-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-pencil-square d-inline d-sm-none" viewBox="0 0 16 16">
+                <path
+                  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path fill-rule="evenodd"
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+              </svg><span class="btn-text d-none d-sm-inline">Edit</span>
+            </button>
+            <!-- delete button -->
+            <button type="button" class="btn btn-sm btn-outline-danger delete-btn m-0 px-1 py-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-trash d-inline d-sm-none" viewBox="0 0 16 16">
+                <path
+                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z">
+                </path>
+                <path fill-rule="evenodd"
+                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z">
+                </path>
+              </svg><span class="btn-text d-none d-sm-inline">Delete</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock forum_comment %}

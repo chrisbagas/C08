@@ -12,7 +12,7 @@
 ## Story:
 Platform (Website) kami merupakan sarana bagi orang-orang yang ingin berbagi cerita seputar Covid-19. Baik membagikan pengalaman jika pernah terjangkit covid-19 sebelumnya, pengalaman yang dirasakan ketika melakukan vaksin, serta hal-hal apapun yang merupakan dampak dari pandemi covid ini. Selain itu, platform kami juga menyediakan forum bagi pengguna yang memiliki pertanyaan seputar covid-19 dimana pertanyaan tersebut bisa dijawab oleh pengguna lain yang sekiranya tahu atau pernah mengalami apa yang ditanyakan tersebut.
 ## Daftar Modul:
-- Sign up/Sign in Form<br>
+- Sign up/Sign in<br>
 Modul ini akan digunakan untuk mengidentifikasi pengguna website. Pada modul ini nanti akan dibuat model untuk data yang berisi data pengguna, yaitu nama lengkap, username/nickname, email, dan password. Sign up / sign in form ini juga bisa menggunakan akun Google atau akun lainnya untuk memasuki website agar data terintegrasi dan akses ke website sangat mudah.
 - Dashboard Profil<br>
 Modul ini digunakan oleh user yang sudah login untuk memodifikasi data pada profil milik user tersebut, diantaranya mencakup nama, deskripsi diri, dan menambahkan foto profil.
@@ -21,22 +21,23 @@ Modul ini akan berisi daftar event-event yang akan diadakan oleh platform kami. 
 - Blog Content<br>
 Modul ini akan menampilkan daftar blog-blog yang ada di dalam website ini serta isi dari masing-masing blog tersebut dalam sub url-sub url yang bersangkutan. Daftar blog tersebut ditampilkan dalam bentuk kartu-kartu. Setiap blog diimplementasikan sebagai sebuah model yang memiliki judul, subjudul, gambar (opsional), dan isi. Saat sebuah blog ditambahkan, judul, subjudul, gambar blog (jika ada), tanggal post-nya, dan nama user yang membuat blognya akan ditampilkan. Saat seorang user mengklik judulnya, isi dari blognya akan ditampilkan di dalam sebuah sub url.
 - Forum<br>
-Modul ini akan menampilkan daftar forum yang berisi diskusi-diskusi pengguna website. Tampilan tiap forum berupa card, yang terdiri atas nama pengirim, waktu pembuatan, judul, dan isi forum tersebut.
-- Leaderboard<br>
-Modul ini akan menampilkan data masing masing user yang sering berpartisipasi di dalam platform kami. Data tersebut akan ditampilkan dalam bentuk tabel. Terdapat 2 pilihan yang akan ditampilkan pada leaderboard, peringkat secara umum dan peringkat mingguan. Partisipasi user dihitung melalui jumlah blog yang dibuat maupun jumlah pertanyaan/jawaban yang diajukan oleh user.
-- Landing Page dan About Us<br>
-Modul ini menampilkan halaman yang berisi deskripsi dari website yang dibentuk.
+Modul ini akan menampilkan sebuah forum yang berisi daftar diskusi antar pengguna website seputar pandemi covid. Tampilan tiap forum berupa card, yang terdiri atas nama pengirim, waktu pembuatan, judul, dan isi forum tersebut.
+- Mini Survey<br>
+Modul ini menampilkan survei kecil-kecilan untuk mengetahui preferensi tiap pengguna terhadap sebuah isu. Pengguna yang sudah melakukan login dapat membuat survei mereka sendiri jika mereka ingin melihat preferensi pengguna lainnya. Survei yang dibuat diharapkan tetap sesuai dengan tema yaitu berkaitan dengan pandemi covid-19.
+- Home Page<br>
+Modul ini merupakan halaman utama yang akan menampilkan deskripsi singkat mengenai website corum. Modul ini juga memiliki form feedback yang dapat digunakan oleh pengguna untuk memberikan feedback terhadap website corum.
 ## Persona:
 #### Guest User
-- Mengunjungi Landing page
+- Mengunjungi Home page
 - Mengunjungi Sign up/Sign in page
 - Tidak memiliki logo profil pada navbar
 #### Signed in User
-- Membuat post blog
-- Mengajukan pertanyaan di dalam forum
-- Menjawab pertanyaan di dalam forum
-- Mengunjungi Dashboard profil dan memodifikasi profil
-- Mendaftar event yang tersedia di dalam Events Page
-- Berada dalam Leaderboard
+- Membuat post baru pada halaman blog
+- Mengajukan pertanyaan baru pada halaman forum
+- Menjawab pertanyaan pengguna lain yang berada pada halaman forum
+- Mengunjungi halaman dashboard profil dan memodifikasi profil 
+- Mendaftar event yang tersedia pada halaman events
+- Membuat survei baru pada halaman mini survey
+- Menjawab survei yang tersedia pada halaman mini survey
 ## Referensi:
 https://kotakode.com/

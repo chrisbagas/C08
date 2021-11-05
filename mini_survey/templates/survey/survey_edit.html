@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Edit Survey - Corum</title>
+<link rel="stylesheet" href="{% static '/css/survey_forms.css' %}" />
+{% endblock meta %}
+
+{% block content %}
+<div class="container p-3">
+	<div class="card mt-5 green">
+    <div class="card-header b-green">
+      <h2 class="text-center">{{ survey.title }}</h2>
+    </div>
+		<div class="card-body">
+			<div class="row center">
+				<div class="col-md-6 offset-md-3">
+
+          <div class="options mb-4">
+            <h3 class="text-center mt-3">Your Option Lists</h3>
+            <hr>
+            <ul class="list-group mb-2">
+              {% for option in survey.option_set.all %}
+              <li class="list-group-item">{{ option.text }}</li>
+              {% endfor %}
+            </ul>
+            <a class="btn btn-primary" href="{% url 'add_option' survey.id %}" role="button">Add Another Option</a>
+          </div>
+
+					<h3 class="text-center py-2">Update Your Survey Here</h3>
+					<form action="" method="POST">
+						{% csrf_token %}
+						{% for field in form %}
+						<div class="form-group mb-3">{{ field }}</div>
+						{% endfor %}
+						<button type="submit" class="btn btn-success">Update</button>
+						<a class="btn btn-danger" href="{% url 'delete' survey.id %}" role="button">Delete</a>
+					</form>
+          
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}

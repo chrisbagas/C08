@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/css/event.css' %}" />
+    <title>Event</title>
+{% endblock meta %}
+{% block content %}
+    <section class="text-black p-5 text-center text-sm-start back">
+        <div class="container">
+            <div class="d-sm-flex align-items-center justify-content-between">
+                <div>
+                    <h1>
+                        EVENTS SEPUTAR <span class="warn">COVID-19</span>
+                    </h1>
+                    <h3>
+                        Ikuti event-event untuk menambah wawasan seputar <span class="warn">COVID-19</span>
+                    </h3>
+                </div>
+                <img class="image-fluid w-25 float-right d-none d-md-block"src="https://upload.wikimedia.org/wikipedia/commons/8/82/SARS-CoV-2_without_background.png" alt="">
+            </div>
+        </div>
+    </section>
+    {% if request.user.is_superuser %}
+    <section>
+        <div class="container pb-2 pt-4">
+            <a href="{% url 'event:event_form' %}">
+                <button type="button" class="btn btn-outline-info btn-lg btn-block">ADD EVENTS</button>
+            </a>
+        </div>
+    </section>
+    {% endif %}
+    <div class="container py-2">
+        <h1>JOIN US!</h1>
+    </div>
+    <section class="py-2">
+        <div class="container">
+            <div class="row justify-content-center h-100">
+                {% for e in event %}
+                <div class="col-xl-3 col-lg-4 col-md-8 col-sm-12 m-3">
+                    <a href="{% url 'event:detail' e.id%}">
+                        <div class="card text-black h-100 back">
+                            {% if e.Card_Image %}
+                                <img src="{{e.Card_Image.url}}" class="object-cover card-img-top image-fluid mx-auto h-50" alt="">
+                            {% else %}
+                                <img src="{% static '/image/404.png' %} " class="object-cover card-img-top image-fluid mx-auto h-50" alt="">
+                            {% endif%}
+                            <div class="card-title text-center">
+                                <h3 class="my-3">{{e.Nama}}</h3>
+                            </div>
+                            <div class="card-body d-flex flex-column mx-auto pt-1">
+                                <i class='bx bx-calendar-check d-flex flex-row align-items-center h3 text-left'><h4 class="card-text pl-2">{{e.Tanggal}}</h4></i>
+                                <i class='bx bx-time-five d-flex flex-row align-items-center h3 text-left' ><h4 class="card-text pl-2">{{e.Waktu}}</h4></i>
+                                <i class='bx bx-video d-flex flex-row align-items-center h3 text-left' ><h4 class="card-text pl-2">{{e.Media}}</h4></i>
+                                <i class='bx bx-chat d-flex flex-row align-items-center h3 text-left' ><h4 class="card-text pl-2">{{e.Tipe}}</h4></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock content %}

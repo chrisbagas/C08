@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Mini Survey - Corum</title>
+<link rel="stylesheet" href="{% static '/css/survey_lists.css' %}" />
+{% endblock meta %}
+
+{% block content %}
+<section class="p-5 mb-5 text-black text-center text-sm-start tosca">
+  <div class="container">
+      <div class="d-sm-flex align-items-center justify-content-between">
+          <div>
+              <h1 style="font-weight: bold;">
+                  SURVEY SEPUTAR <span class="t-span">COVID-19</span>
+              </h1>
+              <h5>
+                  Lihat dan ikuti sejumlah mini survey menarik untuk menambah wawasan seputar 
+                  <span class="t-span">COVID-19</span>
+              </h5>
+          </div>
+          <img 
+          class="image-fluid w-25 float-right d-none d-md-block"
+          src="https://upload.wikimedia.org/wikipedia/commons/8/82/SARS-CoV-2_without_background.png"
+          alt="Header logo"
+          />
+      </div>
+  </div>
+</section>
+<div class="container">
+  <div class="survey-header">
+    <div class="survey-header-left">
+      <h3>Survey List</h3>
+      <p>{{survey_count}} survey available</p>
+    </div>
+    <div class="survey-header-right">
+      <a class="btn btn-primary mb-3" href="{% url 'create' %}"">Create New Survey</a>
+    </div>
+  </div>
+
+  {% if surveys %}
+  {% for survey in surveys %}
+  <article class="surveycard green">
+    <div class="surveycard__text t-dark">
+      <h1 class="surveycard__title green">{{ survey.title }}</h1>
+      <div class="surveycard__subtitle small">
+        Created on {{ survey.pub_date }} by {{ survey.creator }}
+      </div>
+      <div class="surveycard__bar"></div>
+      <ul class="surveycard__tagbox">
+        <li class="tag__item-left"><a href="{% url 'details' survey.id %}">Vote</a></li>
+        <li class="tag__item-left"><a href="{% url 'results' survey.id %}">View Result</a></li>
+        {% if request.user == survey.creator %}
+        <li class="tag__item-right"><a href="{% url 'edit' survey.id %}">Edit</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </article>
+  {% endfor %}
+  {% endif %}
+</div>
+{% endblock content %}

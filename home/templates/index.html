@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static '/css/myStyle.css' %}" />
+<title>Home</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static '/js/mainHome.js' %}"></script>
+{% endblock meta %}
+
+{% block content %}
+    <main>
+
+        <!-- Jumbotron -->
+        <section class="jumbotron text-center">
+            {% if request.user.is_authenticated %}
+                <h1>
+                    Hello, {{ request.user.username }}. Welcome Back.
+                </h1>
+            {% else %}
+                <h1>
+                    Hello, Welcome to our website.
+                </h1>
+            {% endif %}
+            <h1 class="display-4" style="font-weight: 500;">CORUM</h1>
+            <p class="lead">Share With Us</p>
+        </section>
+
+        <!-- About -->
+        <section id="about">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col pt-4">
+                        <h2>About this Website</h2>
+                    </div>
+                </div>
+                <div class="row justify-content-center text-center">
+                    <div class="col-8">
+                        <p id="description" style="font-weight: 300;">Platform (Website) ini merupakan sarana bagi orang-orang yang ingin berbagi cerita seputar Covid-19. Baik membagikan pengalaman jika pernah terjangkit covid-19 sebelumnya, pengalaman yang dirasakan ketika melakukan vaksin, serta hal-hal apapun yang merupakan dampak dari pandemi covid ini. Selain itu, platform ini juga menyediakan forum bagi pengguna yang memiliki pertanyaan seputar covid-19 dimana pertanyaan tersebut bisa dijawab oleh pengguna lain yang sekiranya tahu atau pernah mengalami apa yang ditanyakan tersebut.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Member -->
+        <section id="member">
+            <div class="container">
+                <div class="row text-center justify-content-center">
+                    <div class="col">
+                        <h3>OUR TEAM</h3>
+                    </div>
+                </div>
+                <div class="row pt-4 pb-4 justify-content-center">
+                    <div class="col-md-3 mb-3">
+                        <div class="card border-0">
+                            <img src="../../static/image/Andhira edit.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-text text-center">Andhira Henrisen Sikoko</h5>
+                                <p class="card-text text-center">Forum Module</p>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card border-0">
+                            <img src="../../static/image/Bagas.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-text text-center">Christopher Bagas Laiputra</h5>
+                                <p class="card-text text-center">Event Module</p>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card border-0">
+                            <img src="../../static/image/Rafi edit.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-text text-center">Ahmad Rafi Wirana</h5>
+                                <p class="card-text text-center">Account Module</p>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card border-0">
+                            <img src="../../static/image/Hafidz edit 2.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-text text-center">M Hafidz Sulistyanto</h5>
+                                <p class="card-text text-center">Survey Module</p>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card border-0">
+                            <img src="../../static/image/Vincent edit.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-text text-center">Vincent Yovian</h5>
+                                <p class="card-text text-center">Blog Module</p>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card border-0">
+                            <img src="../../static/image/Visi.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-text text-center">Visianita Widyaningrum</h5>
+                                <p class="card-text text-center">Profile Module</p>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card border-0">
+                            <img src="../../static/image/Ilhan.jpeg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-text text-center">Ilhan Firka Najia</h5>
+                                <p class="card-text text-center">Home Module</p>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="feedback">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col pt-4">
+                        <h2>Feedback Form</h2>
+                    </div>
+                </div>
+                <div class="row justify-content-center text-center">
+                    <div class="col-8">
+                        <h5>Want to give us your review about our website?</h5>
+                        <button onclick="myFunction()" class="btn btn-info btn-lg" id="click">Click here</button>
+
+                        <div class="pb-3 pt-3" id="status-container" style="display: none;">
+                            <div class="alert alert-primary" role="alert" id="status">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <div class="container text-center">
+                {% if request.user.is_authenticated %}
+                    <h3>Want to give us your review about our website?</h3>
+                    <a href="{% url 'feedback' %}" type="button" class="btn btn-info btn-lg">Click here</a>
+                {% else %}
+                    <h3>You must be signed in if you want to give the review</h3>
+                {% endif %}
+            </div> -->
+        </section>
+        
+    </main>
+{% endblock content %}

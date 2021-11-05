@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Create New Survey - Corum</title>
+<link rel="stylesheet" href="{% static '/css/survey_forms.css' %}" />
+{% endblock meta %}
+
+{% block content %}
+<div class="container p-3">
+	<div class="card mt-5 py-3 green">
+		<div class="card-body">
+			<div class="row center">
+				<div class="col-md-6 offset-md-3">
+					<h3>Create A New Survey Here</h3>
+					<form action="" method="POST">
+						{% csrf_token %}
+						{% for field in form %}
+						<div class="form-group my-3">{{ field }}</div>
+						{% endfor %}
+						<button type="submit" class="btn btn-success">Add Survey</button>
+						<a class="btn btn-danger" href="{% url 'lists' %}" role="button">Cancel</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}
