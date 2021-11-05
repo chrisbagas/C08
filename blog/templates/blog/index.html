@@ -10,8 +10,24 @@
 </head>
 
 <body>
-    <div class="post-wrapper filter transition duration-700 container bg-beige-lightest m-auto py-10 text-left box-border max-w-full">
-
+    <div class="post-wrapper filter transition duration-700 container bg-beige-lightest m-auto text-left box-border max-w-full">
+        
+        
+        <section class="px-2 xl:px-28 py-5 mb-5 text-black text-center text-sm-start bg-white">
+ 
+                <div class="flex items-center justify-between">
+                    <div class="text-left">
+                        <h1 style="font-weight: bold;">
+                            SURVEY SEPUTAR <span class="t-span">COVID-19</span>
+                        </h1>
+                        <h5>
+                            Lihat dan ikuti sejumlah mini survey menarik untuk menambah wawasan seputar 
+                            <span class="t-span">COVID-19</span>
+                        </h5>
+                    </div>
+                    <img class="image-fluid w-20 float-right block" src="https://upload.wikimedia.org/wikipedia/commons/8/82/SARS-CoV-2_without_background.png" alt="Header logo">
+                </div>
+        </section>
         
 
         {% for post in posts %}
@@ -58,6 +74,7 @@
         </div>
 
         {% endfor %}
+        <div class="pb-32 bg-white"></div>
     </div>
 
     {% for post in posts %}
