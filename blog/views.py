@@ -18,7 +18,7 @@ def post(request, slug):
 
 @login_required(login_url='/login/')
 def add_post(request):
-    form = BlogPostForm(request.POST or None)
+    form = BlogPostForm(request.POST, request.FILES)
     if request.method == 'POST' and form.is_valid:
         temp = form.save(commit=False)
         temp.author = request.user
@@ -32,7 +32,7 @@ def add_post(request):
 @login_required(login_url='/login/')
 def edit_post(request, slug):
     post = BlogPost.objects.get(slug=slug)
-    form = BlogPostForm(request.POST or None, instance=post)
+    form = BlogPostForm(request.POST, request.FILES, instance=post)
     if request.method == 'POST' and form.is_valid:
         temp = form.save(commit=False)
         temp.save()
