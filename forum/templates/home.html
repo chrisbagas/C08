@@ -1,53 +1,42 @@
 {% extends 'base.html' %}
 
-{% block title %} Home utk forum {% endblock title %}
+{% load static %}
+{% block meta %}
 
-{% block forum_content %}
-<!-- <div class="card shadow-lg rounded">
-    <div class="list-group list-group-flush">
-        {% for forum in forums %}
-        <div class="list-group-item p-2">
-            <div class="row align-items-start">
-                <div class="col-12 col-md-4">
-                    <div class="row">
-                        <div class="col-2 col-md-3 ext-center align-self-center d-sm-block d-none">
-                            <img style="width: 2.5rem; height: 2.5rem;"
-                                class="align-self-center img-fluid rounded-circle"
-                                src="https://www.gravatar.com/avatar/8ffba22ca3f8fa42883f175c42b9049f?s=128&d=mm&r=g"
-                                alt="Avatar">
-                        </div>
-                        <div class="col-sm-9 col-md-8 col-12">
-                            <p class="align-self-center align-middle pt-sm-3 pt-0">
-                                {{ forum.author }}
-                            </p>
-                        </div>
-                    </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.6.1/font/bootstrap-icons.min.css"
+  integrity="sha512-9a1QYep56cYgIPFq0JYfsh9xRYYmPBxKaD6/ZfVAtplQ6y9ZUSk7GxgC2dmwtxK9T2cGQOxCV6J2Ll51nrvP2w=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+<title>Forum</title>
+{% endblock meta %}
 
-                </div>
-                <div class="col-9 col-md-6 pt-sm-2 align-self-end">
-                    <p class=""><a href="{% url 'forum_detail' forum.pk %}">{{ forum.title }}</a></p>
-                </div>
-                <div class="d-grid d-md-block gap-1 col-2 col-md-2 align-middle pt-sm-2">
-                    <button class="btn btn-primary btn-sm d-print-none" type="submit">edit</button>
-                    <button class="btn btn-danger btn-sm d-print-none" type="submit">delete</button>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-</div> -->
-
-
-<!-- coba-coba dulu gan -->
+{% block content %}
 
 <style>
+  .parallax {
+    /* The image used */
+    /* background-image: url("img_parallax.jpg"); */
+
+    /* Set a specific height */
+    min-height: 500px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .tosca {
+    background-color: #65ccb8;
+  }
+
+  .t-span {
+    color: #ff8800;
+  }
+
   div * {
     margin: 0;
     padding: 0;
-  }
-
-  body {
-    background-color: #b0e795;
   }
 
   /* div>ul>li {
@@ -59,11 +48,11 @@
   }
 
   div>ul>li.forum-list {
-    background-color: #d9e9d0;
+    background-color: #f6fff1;
     transition: background-color 1s;
   }
 
-   div.card {
+  div.card {
     background-color: #d9e9d0;
     transition: background-color 1s;
   }
@@ -75,74 +64,232 @@
   } */
 </style>
 
-
-<div class="mb-4 d-flex">
-  <a href=" {% url 'home' %}" style="text-decoration: none; color: #FFA700;">
-    <h2> Forum </h2>
-  </a>
-</div>
-
-<!-- forum form -->
-<div class="container-coba-collapse my-3">
-  <p>
-    <button class="btn-sm forum-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseForumForm"
-      aria-expanded="false" aria-controls="collapseForumForm" data-bs-auto-close="inside">
-      New Forum
-    </button>
-  </p>
-  <div class="collapse" id="collapseForumForm">
-    <div class="card card-body border-0 mt-1">
-      <div class="form-floating mb-3">
-        <input class="form-control" id="floatingInput" placeholder="Title">
-        <label for="floatingInput">Title</label>
+<!-- Ini yang gede nongol di atas -->
+<section class="p-5 mb-5 text-black text-center text-sm-start tosca">
+  <div class="container">
+    <div class="d-sm-flex align-items-center justify-content-between">
+      <div>
+        <h1 style="font-weight: bold">
+          FORUM SEPUTAR <span class="t-span">COVID-19</span>
+        </h1>
+        <h5>
+          Berforum ria agar tidak ketinggalan info menarik
+          <span class="t-span">COVID-19</span>
+        </h5>
       </div>
-      <div class="form-floating mb-3">
-        <textarea class="form-control" placeholder="Leave your question here" id="floatingTextarea"></textarea>
-        <label for="floatingTextarea">Question</label>
-      </div>
-      <div class="btn text-end p-0">
-        <button class="btn btn-sm btn-success" type="submit">Submit</button>
-      </div>
+      <img class="image-fluid w-25 float-right d-none d-md-block"
+        src="https://upload.wikimedia.org/wikipedia/commons/8/82/SARS-CoV-2_without_background.png" alt="Header logo" />
     </div>
   </div>
+</section>
+
+<div class="container my-5">
+  <!-- <div class="mb-4 d-flex">
+  <a href=" {% url 'home' %}" style="text-decoration: none">
+    <h2> Forum </h2>
+  </a>
+</div> -->
+  <h3>Forum</h3>
+
+  {% if user.is_authenticated %}
+
+  <!-- forum form -->
+  <div class="container-coba-collapse my-3">
+    <p>
+      <button class="btn-sm forum-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseForumForm"
+        aria-expanded="false" aria-controls="collapseForumForm" data-bs-auto-close="inside">
+        New Forum
+      </button>
+    </p>
+    <div class="collapse" id="collapseForumForm">
+      <!-- AddForum Form -->
+      <form id="add-forum" action="" collapse="true" class="card card-body border-0 mt-1">
+        <p id="author-username" class="d-none">{{ user.username }}</p>
+        <div class="form-floating mb-3">
+          <input class="form-control" id="floatingInput" placeholder="Title" name="title" required />
+          <label for="floatingInput">Title</label>
+        </div>
+        <div class="form-floating mb-3">
+          <textarea class="form-control" placeholder="Leave your question here" id="floatingTextarea" name="body"
+            style="height: 100px" required></textarea>
+          <label for="floatingTextarea">Question</label>
+        </div>
+        <div class="btn text-end p-0">
+          <button class="btn btn-sm btn-success" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  {% endif %}
+
+  <!-- Forum List -->
+  <div id="forum-list" class="card shadow border-0 mt-3">
+    <ul id="forum-list" class="list-group list-group-flush">
+      {% if forums %} {% for forum in forums|dictsortreversed:'time_modified' %}
+      <li class="list-group-item forum-list" id="forum-{{ forum.pk }}">
+        <div class="container">
+          <div class="row">
+            <!-- avatar -->
+            <div class="col-1 d-none d-sm-flex align-self-center p-0 me-1" style="width: 50px; height: 50px">
+              <img class="forumAvatar forumData rounded-circle" name="avatar"
+                src="https://www.gravatar.com/avatar/8ffba22ca3f8fa42883f175c42b9049f?s=128&d=mm&r=g" alt="" />
+            </div>
+            <div class="col-12 col-sm-10 col-md-3 p-0 ps-sm-3">
+              <div class="row row-cols-1 row-cols-md-1">
+                <!-- author -->
+                <div class="col p-1 d-flex">
+                  <p class="forumAuthor forumData fs-6" name="author">
+                    {{ forum.author }}
+                  </p>
+                </div>
+                <!-- time modified -->
+                <div class="col p-1 d-none d-sm-flex text-muted">
+                  {% load humanize %}
+                  <p class="forumTimeModified forumData" name="time_modified" style="font-size: 14px;">
+                    {{ forum.time_modified | naturaltime }}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- title -->
+            <div class="col col-sm-9 col-md-6 d-flex align-items-center p-1 m-0">
+              <a href="{% url 'forum_detail' forum.pk %}" style="text-decoration: none; color: rgb(33, 37, 41)">
+                <strong class="forumTitle forumData" name="title">
+                  {{ forum.title | truncatewords_html:20 }}
+                </strong>
+              </a>
+            </div>
+
+            {% if user.id == forum.author.id or user.is_superuser %}
+
+            <div class="
+                col-sm-3 col-md-2
+                flex-wrap
+                gap-1
+                text-end
+                align-self-center
+                justify-content-center
+                text-sm-center
+                align-content-center
+                p-0
+                m-0
+              ">
+              <!-- edit button -->
+              <button type="button disable" class="btn btn-sm btn-outline-primary edit-btn px-1 py-0"
+                onClick="editForum({{ forum.pk }})">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-pencil-square d-inline d-sm-none" viewBox="0 0 16 16">
+                  <path
+                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                  <path fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                </svg>
+                <span class="btn-text d-none d-sm-inline">Edit</span>
+              </button>
+              <!-- delete button -->
+              <button type="button" class="btn btn-sm btn-outline-danger delete-btn px-1 py-0"
+                onClick="deleteForum({{ forum.pk }})">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-trash d-inline d-sm-none" viewBox="0 0 16 16">
+                  <path
+                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z">
+                  </path>
+                  <path fill-rule="evenodd"
+                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z">
+                  </path>
+                </svg>
+                <span class="btn-text d-none d-sm-inline">Delete</span>
+              </button>
+            </div>
+
+            {% endif %}
+          </div>
+        </div>
+      </li>
+      {% endfor %} {% else %} No forum {% endif %}
+    </ul>
+  </div>
 </div>
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
 
-<!-- Forum List -->
-<div class="card shadow border-0 mt-3">
-  <ul class="list-group list-group-flush">
-    {% for forum in forums|dictsortreversed:'time_modified' %}
-    <li class="list-group-item forum-list" id="{{ forum.pk }}">
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+  // Create Forum AJAX
+  $("form#add-forum").submit(function () {
+    var authorr = document.getElementById("author-username").textContent;
+    console.log(authorr);
+    var titleInput = $('input[name="title"]').val().trim();
+    var bodyInput = $('textarea[name="body"]').val().trim();
+    if (titleInput && bodyInput) {
+      $.ajax({
+        // url: '{% url "forum_create" %}',
+        url: "create",
+        data: {
+          author: authorr,
+          title: titleInput,
+          body: bodyInput,
+        },
+        dataType: "json",
+        success: function (data) {
+          if (data.forum) {
+            appendToForumList(data.forum);
+          }
+        },
+        error: function (data) {
+          console.log(data);
+        },
+      });
+    } else {
+      alert("Please enter a valid value.");
+    }
+    $("form#add-forum").trigger("reset");
+    return false;
+  });
+
+  function appendToForumList(forum) {
+    $("ul#forum-list").prepend(`
+      <li class="list-group-item forum-list" id="forum-${forum.pk}">
       <div class="container">
         <div class="row">
           <!-- avatar -->
           <div class="col-1 d-none d-sm-flex align-self-center p-0 me-1" style="width: 50px; height: 50px;">
-            <img class="rounded-circle"
+            <img class="forumAvatar forumData rounded-circle" name="avatar"
               src="https://www.gravatar.com/avatar/8ffba22ca3f8fa42883f175c42b9049f?s=128&d=mm&r=g" alt="">
           </div>
           <div class="col-12 col-sm-10 col-md-3 ps-sm-3">
             <div class="row row-cols-1 row-cols-md-1">
               <!-- author -->
               <div class="col p-1 d-flex">
-                <p class="author fs-6"> {{ forum.author }} </p>
-              </div>
-              <!-- time modified -->
+                <p class="forumAuthor forumData fs-6" name="author"> ${forum.author} </p>
+              </div>forum-btn ::  -->
               <div class="col p-1 d-none d-sm-flex text-muted">
                 {% load humanize %}
-                <small> {{ forum.time_modified | naturaltime }} </small>
+                <small class="forumTimeModified forumData" name="time_modified"> ${forum.time_modified} </small>
               </div>
             </div>
           </div>
           <!-- title -->
           <div class="col col-sm-9 col-md-6 d-flex align-items-center p-1 m-0">
-            <a href="{% url 'forum_detail' forum.pk %}" style="text-decoration: none; color: rgb(33, 37, 41);">
-              <strong> {{ forum.title | truncatewords_html:20 }} </strong>
+            <a href="?{{forum.pk}}" style="text-decoration: none; color: rgb(33, 37, 41);">
             </a>
           </div>
+          <strong class="forumTitle forumData" name="title"> ${forum.title} </strong>
+          
+          {% if user.id == forum.author.id or user.is_superuser %}
           <div
             class="col-sm-3 col-md-2 flex-wrap gap-1 text-end align-self-center justify-content-center text-sm-center align-content-center p-0 m-0">
             <!-- edit button -->
-            <button type="button" class="btn btn-sm btn-outline-primary edit-btn px-1 py-0">
+            <button type="button" class="btn btn-sm btn-outline-primary edit-btn px-1 py-0" onClick="editForum(${forum.pk})" >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-pencil-square d-inline d-sm-none" viewBox="0 0 16 16">
                 <path
@@ -152,7 +299,7 @@
               </svg><span class="btn-text d-none d-sm-inline">Edit</span>
             </button>
             <!-- delete button -->
-            <button type="button" class="btn btn-sm btn-outline-danger delete-btn px-1 py-0">
+            <button type="button" class="btn btn-sm btn-outline-danger delete-btn px-1 py-0" onClick="deleteForum(${forum.pk})">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-trash d-inline d-sm-none" viewBox="0 0 16 16">
                 <path
@@ -164,11 +311,35 @@
               </svg><span class="btn-text d-none d-sm-inline">Delete</span>
             </button>
           </div>
+          {% endif %}
         </div>
       </div>
-      {% endfor %}
     </li>
-  </ul>
-</div>
+    `);
+  }
+</script>
 
-{% endblock forum_content %}
+
+
+<script>
+  // Delete Forum
+  function deleteForum(pk) {
+    var action = confirm("Are you sure you want to delete this forum?");
+    if (action != false) {
+      $.ajax({
+        url: "delete",
+        data: {
+          pk: pk,
+        },
+        dataType: "json",
+        success: function (data) {
+          if (data.deleted) {
+            $("#forum-list #forum-" + pk).remove();
+          }
+        },
+      });
+    }
+  }
+</script>
+
+{% endblock content %}
