@@ -23,8 +23,14 @@
     </style>
   </head>
   <body>
+    <header>
+      {% include 'navbar.html' %}
+    </header>
 
     {% block content %} {% endblock content %}
 
+    <footer>
+      {% include 'footer.html' %}
+    </footer>
   </body>
 </html>
