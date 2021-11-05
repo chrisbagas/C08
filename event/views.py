@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 from .models import Event
 from .forms import EventForm
 
@@ -12,6 +13,7 @@ def event_detail(request,id):
     response={'event':get_object_or_404(Event,pk=id)}
     return render(request, 'detail.html', response)
 
+@login_required(login_url="/admin/login")
 def event_form(request):
     form = EventForm(request.POST or None, request.FILES or None)
     data = {}
