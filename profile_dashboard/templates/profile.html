@@ -22,40 +22,19 @@
             box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
         }
 
-        .form-control-label {
-            margin-bottom: 0
+        label {
+            font-weight: bold;
         }
 
-        input,
-        textarea,
-        button,
         p {
             padding: 8px 15px;
             border-radius: 5px !important;
             margin: 5px 0px;
             box-sizing: border-box;
-            border: 1px solid #ccc;
             font-size: 18px !important;
             font-weight: 300
         }
 
-        p {
-            background-color: rgb(243, 237, 230);
-        }
-
-        label {
-            font-weight: bold;
-        }
-
-        input:focus,
-        textarea:focus {
-            -moz-box-shadow: none !important;
-            -webkit-box-shadow: none !important;
-            box-shadow: none !important;
-            border: 1px solid #3B945E;
-            outline-width: 0;
-            font-weight: 400
-        }
 
         .btn-block {
             text-transform: uppercase;
@@ -97,45 +76,35 @@
                         <div class="row justify-content-between text-left">
                             <div class="form-group col-sm-6 flex-column d-flex" id="username-container"> 
                                 <label class="form-control-label px-3" for="id_username">Username</label>
-                                <p>{{ user.username }}</p> 
+                                <p id="username">{{ user.username }}</p> 
                             </div>
                             <div class="form-group col-sm-6 flex-column d-flex"> 
                                 <label class="form-control-label px-3"for="id_email">Email</label> 
-                                <p>{{ user.email }}</p> 
+                                <p id="email">{{ user.email }}</p> 
                             </div>
                         </div>
 
                         <div class="row justify-content-between text-left">
                             <div class="form-group col-sm-6 flex-column d-flex"> 
                                 <label class="form-control-label px-3" for="id_first_name">First Name</label> 
-                                {{ u_form.first_name }}
+                                <p id="first_name">{{ user.first_name }}</p>
                             </div>
                             <div class="form-group col-sm-6 flex-column d-flex"> 
                                 <label class="form-control-label px-3" for="id_last_name">Last Name</label> 
-                                {{ u_form.last_name }} 
-                            </div>
-                        </div>
-                        
-                        <div class="row justify-content-between text-left">
-                            <div class="form-group col-sm-6 flex-column d-flex">
-                                <label class="form-control-label px-3" for="id_image">Profile Photo</label>
-                                {{ p_form.image }}
+                                <p id="last_name">{{ user.last_name }}</p> 
                             </div>
                         </div>
 
                         <div class="row justify-content-between text-left">
                             <div class="form-group col-12 flex-column d-flex"> 
                                 <label class="form-control-label px-3" for="id_bio">Bio</label>
-                                {{ p_form.bio }} 
+                                <p id="bio">{{ user.profile.bio }}</p>
                             </div>
                         </div>
 
                         <div class="row justify-content-end">
                             <div class="form-group col-sm-6"> 
-                                <button class="btn-block btn-primary"><a href="{% url 'profile'%}">Back to Profile</a></button>
-                            </div>
-                            <div class="form-group col-sm-6"> 
-                                <button type="submit" class="btn-block btn-primary">Save Changes</button>
+                                <button class="btn-block btn-primary"><a href="{% url 'edit_profile' %}">Edit Profile</a></button>
                             </div>
                         </div>
                     </form>

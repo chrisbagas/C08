@@ -35,7 +35,6 @@ urlpatterns = [
     path('event/', include(event)),
     path('profile/', include(profile)),
     path('survey/', include(survey)),
-    path('accounts/', include('allauth.urls')),
     path('forum/', include(forum)),
     re_path(r'^$', index_home, name='index')
 ]
