@@ -33,22 +33,22 @@
 }
 
 .header-wrapper {
-  background-color: #FFFFD4;
+  background-color: #FFFFFF;
   margin-bottom: 0rem;
 }
 
 .info-wrapper {
-  background-color: #FFFFD4;
+  background-color: #FFFFFF;
   padding-bottom: 2rem;
 }
 
 .info-footer {
-  background-color: #FFFFD4;
+  background-color: #FFFFFF;
   /*padding-bottom: 110rem;*/
 }
 
 .post-wrapper {
-  background-color: #FFFFD4;
+  background-color: #FFFFFF;
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
