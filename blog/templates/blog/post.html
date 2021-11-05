@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'base.html' %}
+    
+{% block meta %}
     <title>Blog</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
-</head>
+{% endblock meta %}
 
-<body>
+{% block content %}
     <div class="flex-none">
         <img class="relative w-full h-screen box-border object-cover z-10" src="../../media/{{ post.thumbnail }}" alt>
         <div class="absolute bottom-0 pb-8 max-w-3xl w-full z-20">
@@ -32,5 +30,4 @@
             {{ post.body|safe }}
         </div>
     </div>
-</body>
-</html>
+{% endblock content %}
