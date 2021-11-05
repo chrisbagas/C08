@@ -59,7 +59,11 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 ]
 
-SITE_ID = 1
+SITE_ID = 2
+SOCIALACCOUNT_QUERY_EMAIL = True
+ACCOUNT_LOGOUT_ON_GET= True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_REQUIRED = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
