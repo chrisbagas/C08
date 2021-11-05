@@ -1,15 +1,64 @@
-{% extends 'base.html' %}
-    
-{% block meta %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
     {% load static %}
     <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
-{% endblock meta %}
+</head>
     
-{% block content %}
+<body>
     <div class="post-wrapper filter transition duration-700 container bg-beige-lightest m-auto text-left box-border max-w-full">
         
+        <header class="box-border">
+            <nav class="py-4 w-full top-0 z-30 overflow-y-hidden px-10" style="background-color: #C1FFD7;">
+              <div class="m-0 inline-block flex justify-around pr-10">
+                <a class="flex items-center" href="/" style="font-weight: bold;">
+                  <img src="{% static '/image/corum.png' %} " alt="" width="70" height="70" class="d-inline-block">
+                  <p id="corum">Corum</p>
+                </a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="py-4 w-full top-0 z-30 overflow-y-hidden" id="navbarNav">
+                    <ul class="flex justify-end items-center">
+                      <li class="nav-item pr-6">
+                        <a class="nav-link" href="/">Home</a>
+                      </li>
+                      <li class="nav-item pr-6">
+                        <a class="nav-link" href="/event">Events</a>
+                      </li>
+                      <li class="nav-item pr-6">
+                        <a class="nav-link" href="/forum">Forum</a>
+                      </li>
+                      <li class="nav-item pr-6">
+                        <a class="nav-link" href="/blog">Blog</a>
+                      </li>
+                      <li class="nav-item pr-6">
+                        <a class="nav-link" href="/survey">Mini Survey</a>
+                      </li>
+                      {% if request.user.is_authenticated %}
+                      <li class="nav-item pr-6">
+                        <a class="nav-link" href="/profile">Profile</a>
+                      </li>
+                      <li class="nav-item pr-6">
+                        <a class="nav-link" href=/logout>Logout</a>
+                      </li>
+                      {% else %}
+                      <li class="nav-item pr-6">
+                        <a class="nav-link" href="/login">Login</a>
+                      </li>
+                      <li class="nav-item pr-6">
+                        <a class="nav-link" href="/signup">Sign Up</a>
+                      </li>
+                      {% endif %}
+                  </ul>
+                </div>
+              </div>
+            </nav>
+        </header>  
         
         <section class="px-2 xl:px-28 py-5 text-black text-center text-sm-start bg-white">
  
@@ -112,4 +161,5 @@
     {% endfor %}
     {% load static %}
     <script src="{% static 'blog/js/delete_post.js' %}" crossorigin="anonymous"></script>
-{% endblock content %}
+</body>
+</html>
