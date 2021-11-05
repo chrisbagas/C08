@@ -1,7 +1,7 @@
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
 const first_name = document.getElementById('id_first_name');
 const last_name = document.getElementById('id_last_name');
-const image = document.getElementById('id_first_name');
+const image = document.getElementById('id_image');
 const bio = document.getElementById('id_bio');
 
 form.addEventListener("submit", submitHandler);
@@ -18,7 +18,7 @@ function submitHandler(e) {
 
     $.ajax({
         type        : 'POST', 
-        url         : "{% url 'edit_profile' %}",
+        url         : "",
         enctype     : 'multipart/form-data',
         data        : fd,  
         dataType    : 'json',
