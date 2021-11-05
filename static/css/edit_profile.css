@@ -1,0 +1,89 @@
+body {
+    color: #000;
+    overflow-x: hidden;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%
+}
+
+h2{
+    color:#57BA98;
+    font-weight: bold;
+}
+
+.card {
+    padding: 30px 40px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    border: none !important;
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+img {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    height: 120px;
+    border: 10px
+}
+
+.form-control-label {
+    margin-bottom: 0
+}
+
+input,
+button,
+p {
+    padding: 8px 15px;
+    border-radius: 5px !important;
+    margin: 5px 0px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    font-size: 18px !important;
+    font-weight: 300
+}
+
+p {
+    background-color: rgb(243, 237, 230);
+}
+
+label {
+    font-weight: bold;
+}
+
+input:focus,
+textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #3B945E;
+    outline-width: 0;
+    font-weight: 400
+}
+
+.btn-block {
+    text-transform: uppercase;
+    font-size: 15px !important;
+    font-weight: 400;
+    height: 43px;
+    cursor: pointer;
+    background-color: #57BA98;
+    border-color: #57BA98
+}
+
+.btn-block:hover {
+    color: #fff !important
+}
+
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0;
+    background-color: #2a8867
+}
+
+@media (max-width: 600px) {
+  p, input {
+    justify-content: center;
+  }
+}
