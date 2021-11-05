@@ -32,8 +32,9 @@ def add_post(request):
 @login_required(login_url='/login/')
 def edit_post(request, slug):
     postedit = BlogPost.objects.get(slug=slug)
-    form = BlogPostForm(request.POST, request.FILES, instance=postedit)
+    form = BlogPostForm(instance=postedit)
     if request.method == 'POST' and form.is_valid:
+        form = BlogPostForm(request.POST, request.FILES, instance=postedit)
         temp = form.save(commit=False)
         temp.author = request.user
         temp.save()
