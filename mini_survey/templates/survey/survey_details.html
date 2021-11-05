@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Survey Details - Corum</title>
+{% endblock meta %}
+
+{% block content %}
+<div class="container p-5">
+    <h2>{{ survey.title }}</h2>
+    <hr>
+    <h6>{{ survey.description }}</h6>
+    <form action="{% url 'vote' survey.id %}" method="POST">
+        {% csrf_token %}
+        {% for option in survey.option_set.all %}
+        <input type="radio" name="option" id="option{{ forloop.counter }}" value="{{ option.id }}">
+        <label for="option{{ forloop.counter }}">{{ option.text }}</label>
+        <br>
+        {% endfor %}
+        <input type="submit" value="Vote" class="btn btn-primary mt-3">
+        <a class="btn btn-danger mt-3" href="{% url 'lists' %}" role="button">Cancel</a>
+    </form>
+
+</div>
+{% endblock content %}
