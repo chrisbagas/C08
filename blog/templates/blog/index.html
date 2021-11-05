@@ -30,7 +30,7 @@
 
         {% for post in posts %}
         <div class="thumbnail-wrapper {{ post.pk }}">
-            <img class="thumbnail" src="../media/{{ post.thumbnail }}" alt>
+            <img class="thumbnail" src="{{ post.thumbnail.url }}" alt="">
         </div>
         <div class="header-wrapper {{ post.pk }} px-2 xl:px-28 pb-24">
             <h2 class="m-auto pt-4 pb-2 md:pt-6 md:pb-4 text-left break-words text-4xl sm:text-5xl md:text-6xl">
