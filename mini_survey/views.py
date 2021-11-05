@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -131,3 +132,25 @@ def vote(request, survey_id):
         'survey': survey,
     }
     return render(request, 'survey/survey_results.html', context)
+
+
+def search_results(request):
+    if request.is_ajax():
+        res = None
+        survey = request.POST.get('survey')
+        qs = Survey.objects.filter(title__icontains=survey)
+        if len(qs) > 0 and len(survey) > 0:
+            data = []
+            for pos in qs:
+                item = {
+                    'pk': pos.pk,
+                    'title': pos.title,
+                    'creator': pos.creator
+                }
+                data.append(item)
+            res = data
+        else:
+            res = 'No survey found'
+
+        return JsonResponse({'data': res})
+    return JsonResponse({})

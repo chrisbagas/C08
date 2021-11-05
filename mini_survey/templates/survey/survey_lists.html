@@ -4,6 +4,8 @@
 {% block meta %}
 <title>Mini Survey - Corum</title>
 <link rel="stylesheet" href="{% static '/css/survey_lists.css' %}" />
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="{% static '/js/survey.js' %}" defer></script>
 {% endblock meta %}
 
 {% block content %}
@@ -15,7 +17,7 @@
                   SURVEY SEPUTAR <span class="t-span">COVID-19</span>
               </h1>
               <h5>
-                  Lihat dan ikuti sejumlah mini survey menarik untuk menambah wawasan seputar 
+                  Lihat dan ikuti sejumlah mini survey menarik untuk mengetahui preferensi orang terhadap sesuatu yang berkaitan dengan 
                   <span class="t-span">COVID-19</span>
               </h5>
           </div>
@@ -32,6 +34,13 @@
     <div class="survey-header-left">
       <h3>Survey List</h3>
       <p>{{survey_count}} survey available</p>
+      <div class="w-50 mb-4">
+        <form id="search-form" autocomplete="off">
+          {% csrf_token %}
+          <input type="text" id="search-input" class="p-2 w-50 search" placeholder="Search by title" />
+        </form>
+        <div id="results-box" class="results-card not-visible"></div>
+      </div>
     </div>
     <div class="survey-header-right">
       <a class="btn btn-primary mb-3" href="{% url 'create' %}"">Create New Survey</a>

@@ -5,6 +5,23 @@
 .t-span {
   color: #ff8800;
 }
+/* Search Bar */
+.search:focus {
+  background-color: #e8e8e8;
+}
+.not-visible {
+  display: none;
+}
+.results-card {
+  width: 50%;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.3);
+  transition: 0.5s;
+  border-radius: 7px;
+  padding: 10px;
+}
+.item {
+  text-decoration: none;
+}
 
 a,
 a:hover {
