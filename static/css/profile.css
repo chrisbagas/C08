@@ -40,13 +40,13 @@ p {
 }
 
 
-button {
+.btn {
+    text-transform: uppercase;
     font-size: 15px !important;
     font-weight: 400;
-    height: 43px;
+    height: 38px;
+    cursor: pointer;
     background-color: #57BA98;
     border-color: #57BA98;
-    border-radius: 3px;
-    color: #fff;
-    max-width: 120px;
+    text-align: center;
 }

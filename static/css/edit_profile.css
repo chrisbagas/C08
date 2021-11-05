@@ -50,8 +50,7 @@ label {
     font-weight: bold;
 }
 
-input:focus,
-textarea:focus {
+input:focus{
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
@@ -67,7 +66,7 @@ textarea:focus {
     height: 43px;
     cursor: pointer;
     background-color: #57BA98;
-    border-color: #57BA98
+    border-color: #57BA98;
 }
 
 .btn-block:hover {
@@ -81,6 +80,18 @@ button:focus {
     outline-width: 0;
     background-color: #2a8867
 }
+
+.btn {
+    text-transform: uppercase;
+    font-size: 15px !important;
+    font-weight: 400;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-color: #57BA98;
+    color: #57BA98;
+}
+
 
 @media (max-width: 600px) {
   p, input {

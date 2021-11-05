@@ -44,7 +44,7 @@
                         </div>
                         
                         <div class="row justify-content-between text-left">
-                            <div class="form-group col-md-6 flex-column d-flex">
+                            <div class="form-group col-md-12 flex-column d-flex">
                                 <label class="form-control-label px-3" for="id_image">Profile Photo</label>
                                 {{ p_form.image }}
                             </div>
@@ -58,9 +58,9 @@
                         </div>
 
                         <div class="row justify-content-end">
-                            <div class="form-group col-md-6"> 
-                                <a href="{% url 'profile'%}">
-                                    <button class="btn-block btn-primary">Back to Profile</button>
+                            <div class="col-md-6"> 
+                                <a class="btn btn-outline-primary" href="{% url 'profile'%}">
+                                    Back to Profile
                                 </a>
                             </div>
                             <div class="form-group col-md-6"> 
