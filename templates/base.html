@@ -14,23 +14,21 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500&display=swap" rel="stylesheet">
-    {% block meta %} {% endblock meta %}
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-      *{
-        font-family: 'Epilogue', sans-serif;
-      }
+      * {font-family: 'Poppins', sans-serif;}
     </style>
+    
+    {% block meta %} {% endblock meta %}
+
   </head>
   <body>
-    <header>
-      {% include 'navbar.html' %}
-    </header>
+    {% include 'navbar.html' %}
 
     {% block content %} {% endblock content %}
 
-    <footer>
-      {% include 'footer.html' %}
-    </footer>
+    {% include 'footer.html' %}
   </body>
 </html>
