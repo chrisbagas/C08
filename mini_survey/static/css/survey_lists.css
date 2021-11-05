@@ -1,3 +1,11 @@
+/* Header */
+.tosca {
+  background-color: #65ccb8;
+}
+.t-span {
+  color: #ff8800;
+}
+
 a,
 a:hover {
   text-decoration: none;
@@ -59,9 +67,8 @@ a:hover {
   font-size: 14px;
   margin: 20px 0 0 0;
   padding: 0;
-  justify-content: center;
 }
-.surveycard .surveycard__tagbox .tag__item {
+.surveycard .surveycard__tagbox .tag__item-left {
   display: inline-block;
   color: #ffffff;
   background: #3b845e;
@@ -73,7 +80,23 @@ a:hover {
   user-select: none;
   transition: background-color 0.3s;
 }
-.surveycard .surveycard__tagbox .tag__item:hover {
+.surveycard .surveycard__tagbox .tag__item-left:hover {
+  background-color: rgb(59, 148, 94, 0.6);
+  border: 3px solid rgb(59, 148, 94, 0.1);
+}
+.surveycard .surveycard__tagbox .tag__item-right {
+  display: inline-block;
+  color: #ffffff;
+  background: #3b845e;
+  border: 3px solid #3b845e;
+  border-radius: 3px;
+  padding: 2.5px 10px;
+  margin: 0 0 5px auto;
+  cursor: default;
+  user-select: none;
+  transition: background-color 0.3s;
+}
+.surveycard .surveycard__tagbox .tag__item-right:hover {
   background-color: rgb(59, 148, 94, 0.6);
   border: 3px solid rgb(59, 148, 94, 0.1);
 }
@@ -144,7 +167,7 @@ a:hover {
 .green::before {
   background-image: linear-gradient(
     -30deg,
-    rgb(101, 204, 184, 0.6),
+    rgb(101, 204, 184, 1),
     transparent 50%
   );
 }
@@ -152,7 +175,7 @@ a:hover {
 .green:nth-child(2n)::before {
   background-image: linear-gradient(
     30deg,
-    rgb(101, 204, 184, 0.6),
+    rgb(101, 204, 184, 1),
     transparent 50%
   );
 }
@@ -161,7 +184,7 @@ a:hover {
   .green::before {
     background-image: linear-gradient(
       -80deg,
-      rgb(101, 204, 184, 0.6),
+      rgb(101, 204, 184, 1),
       transparent 50%
     );
   }
@@ -169,7 +192,7 @@ a:hover {
   .green:nth-child(2n)::before {
     background-image: linear-gradient(
       80deg,
-      rgb(101, 204, 184, 0.6),
+      rgb(101, 204, 184, 1),
       transparent 50%
     );
   }

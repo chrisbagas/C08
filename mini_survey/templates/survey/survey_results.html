@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Survey Results - Corum</title>
+{% endblock meta %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-sm-2">
+      <h3 class="mt-3 mb-3 text-center">{{ survey.title }}</h3>
+      <h3 class="mb-2 text-center">Total: {{ survey.get_survey_count }} votes</h3>
+
+      <ul class="list-group">
+        {% for option in survey.option_set.all %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>{{ option.text }}</div>
+          <div>{{ option.get_option_count }}</div>
+        </li>
+        {% endfor %}
+      </ul>
+      <a class="btn btn-primary mt-3" href="{% url 'lists' %}" role="button">Back To Survey List</a>
+    </div>
+  </div>
+</div>
+{% endblock content %}

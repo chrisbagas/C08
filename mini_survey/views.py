@@ -9,10 +9,6 @@ from .models import Option, Survey, Vote
 def lists(request):
     survey_list = Survey.objects.all()
     survey_count = survey_list.count()
-    # Make pagination to show 10 survey per page
-    paginator = Paginator(survey_list, 10)
-    page_num = request.GET.get('page')
-    surveys = paginator.get_page(page_num)
     context = {
         'surveys': survey_list,
         'survey_count': survey_count
@@ -38,7 +34,7 @@ def results(request, survey_id):
     return render(request, 'survey/survey_results.html', context)
 
 
-@login_required(login_url='/signup/login')
+@login_required(login_url='/login')
 def create(request):
     if request.method == 'POST':
         form = CreateSurveyForm(request.POST)
@@ -61,7 +57,7 @@ def create(request):
     return render(request, 'survey/survey_create.html', context)
 
 
-@login_required(login_url='/signup/login')
+@login_required(login_url='/login')
 def edit(request, survey_id):
     survey = get_object_or_404(Survey, pk=survey_id)
     if request.user != survey.creator:
@@ -82,7 +78,7 @@ def edit(request, survey_id):
     return render(request, 'survey/survey_edit.html', context)
 
 
-@login_required(login_url='/signup/login')
+@login_required(login_url='/login')
 def delete(request, survey_id):
     survey = get_object_or_404(Survey, pk=survey_id)
     if request.user != survey.creator:
@@ -92,7 +88,7 @@ def delete(request, survey_id):
     return redirect('/survey')
 
 
-@login_required(login_url='/signup/login')
+@login_required(login_url='/login')
 def add_option(request, survey_id):
     survey = get_object_or_404(Survey, pk=survey_id)
     if request.user != survey.creator:
@@ -110,11 +106,12 @@ def add_option(request, survey_id):
 
     context = {
         'form': form,
+        'survey': survey,
     }
     return render(request, 'survey/add_option.html', context)
 
 
-@login_required(login_url='/signup/login')
+@login_required(login_url='/login')
 def vote(request, survey_id):
     survey = get_object_or_404(Survey, pk=survey_id)
     option_id = request.POST.get('option')
@@ -133,4 +130,4 @@ def vote(request, survey_id):
     context = {
         'survey': survey,
     }
-    return render(request, 'survey/survey_result.html', context)
+    return render(request, 'survey/survey_results.html', context)
