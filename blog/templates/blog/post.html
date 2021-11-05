@@ -9,7 +9,9 @@
 
 {% block content %}
     <div class="flex-none">
+        {% if post.thumbnail %}
         <img class="relative w-full h-screen box-border object-cover z-10" src="{{ post.thumbnail.url }}" alt="">
+        {% endif %}
         <div class="absolute bottom-0 pb-8 max-w-3xl w-full z-20">
             <div class="w-full pl-10 mr-10 text-left box-border">
                 <div class="pb-3 pl-6 bg-pink-200 rounded-l-xl rounded-r-none md:rounded-r-xl shadow-2xl">
