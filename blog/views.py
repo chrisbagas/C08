@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.core import serializers
+from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime, date
 from .models import BlogPost
 from .forms import BlogPostForm
@@ -56,3 +58,9 @@ def delete_post(request, slug):
     }
     #success_url = reverse_lazy('blog/')
     return render(request, 'blog/delete_post.html', context)
+
+@csrf_exempt
+def json(request):
+    posts = BlogPost.objects.all()
+    response = serializers.serialize('json', posts, fields=['title', 'subtitle', 'thumbnail', 'body', 'date_published', 'slug', 'author'])
+    return HttpResponse(response, content_type = 'application/json')
