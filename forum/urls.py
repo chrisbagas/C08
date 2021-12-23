@@ -8,4 +8,5 @@ urlpatterns = [
     path('comment/create',  createComment.as_view(), name='comment_create'),
     path('delete',  deleteForum.as_view(), name='forum_delete'),
     path("<int:pk>", detailView, name="forum_detail"),
+    path('api/posts/', json, name='json'),
 ]
