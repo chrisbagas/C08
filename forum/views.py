@@ -87,3 +87,9 @@ def detailView(request, pk):
         'forum': Forum.objects.get(pk=pk),
         }
     return render(request, 'forum_detail.html', context)
+
+@csrf_exempt
+def json(request):
+    forums = Forum.objects.all()
+    response = serializers.serialize('json', posts, fields=['title', 'author', 'body', 'time_modified'])
+    return HttpResponse(response, content_type = 'application/json')
