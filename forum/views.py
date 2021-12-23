@@ -92,5 +92,5 @@ def detailView(request, pk):
 @csrf_exempt
 def json(request):
     forums = Forum.objects.all()
-    response = serializers.serialize('json', posts, fields=['title', 'author', 'body', 'time_modified'])
+    response = serializers.serialize('json', forums, fields=['title', 'author', 'body', 'time_modified'])
     return HttpResponse(response, content_type = 'application/json')
