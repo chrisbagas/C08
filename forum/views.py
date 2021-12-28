@@ -1,5 +1,6 @@
 from django.contrib.auth import models
-from django.http.response import HttpResponseRedirect, JsonResponse
+from django.core import serializers
+from django.http.response import HttpResponseRedirect, HttpResponse
 from django.views.generic import View
 from django.shortcuts import render
 from django.urls import reverse
@@ -87,3 +88,9 @@ def detailView(request, pk):
         'forum': Forum.objects.get(pk=pk),
         }
     return render(request, 'forum_detail.html', context)
+
+@csrf_exempt
+def json(request):
+    forums = Forum.objects.all()
+    response = serializers.serialize('json', forums, fields=['title', 'author', 'body', 'time_created', 'time_modified'])
+    return HttpResponse(response, content_type = 'application/json')

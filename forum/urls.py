@@ -1,6 +1,6 @@
 from django.urls import path
 
-from forum.views import createComment, createForum, deleteForum, detailView, homeView
+from forum.views import createComment, createForum, deleteForum, detailView, homeView, json
 
 urlpatterns = [
     path("", homeView, name="home"),
@@ -8,4 +8,5 @@ urlpatterns = [
     path('comment/create',  createComment.as_view(), name='comment_create'),
     path('delete',  deleteForum.as_view(), name='forum_delete'),
     path("<int:pk>", detailView, name="forum_detail"),
+    path('api', json, name='json'),
 ]
