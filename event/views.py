@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.core import serializers
 from .models import Event
 from .forms import EventForm
 
@@ -28,3 +30,9 @@ def event_form(request):
         'form': form,
     }
     return render(request,'Event_Form.html', response) #Return NoteForm ke dalam bentuk html
+
+@csrf_exempt
+def json(request):
+    posts = Event.objects.all()
+    response = serializers.serialize('json', posts)
+    return HttpResponse(response, content_type = 'application/json')
