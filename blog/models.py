@@ -11,7 +11,7 @@ class BlogPost(models.Model):
     body = RichTextField(blank=True, null=True)
     date_published = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, to_field="username", unique=True)
 
     class Meta:
         ordering = ['-date_published']
