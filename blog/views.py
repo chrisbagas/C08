@@ -62,5 +62,5 @@ def delete_post(request, slug):
 @csrf_exempt
 def json(request):
     posts = BlogPost.objects.all()
-    response = serializers.serialize('json', posts, fields=['title', 'subtitle', 'thumbnail', 'body', 'date_published', 'slug', 'author'])
+    response = serializers.serialize('json', posts, fields=['title', 'subtitle', 'thumbnail', 'body', 'date_published', 'slug', 'author'], use_natural_foreign_keys=True, use_natural_primary_keys=True)
     return HttpResponse(response, content_type = 'application/json')
