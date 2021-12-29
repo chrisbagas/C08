@@ -34,5 +34,5 @@ def event_form(request):
 @csrf_exempt
 def json(request):
     posts = Event.objects.all()
-    response = serializers.serialize('json', posts)
+    response = serializers.serialize('json', posts, fields=['nama','tanggal','waktu','media','tipe','url','deskripsi','image1','image2','created'])
     return HttpResponse(response, content_type = 'application/json')
