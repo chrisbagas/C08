@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
@@ -21,23 +21,6 @@ def post(request, slug):
 @csrf_exempt
 @login_required(login_url='/login/')
 def add_post(request):
-    if 'mobile' in request.GET:
-        if request.GET['mobile'] == 't':
-            post = BlogPost(
-                title = request.POST['title'],
-                subtitle = request.POST['subtitle'],
-                thumbnail = request.POST['thumbnail'],
-                body = request.POST['body'],
-                author = request.user
-            )
-            post.save()
-            return JsonResponse({
-                    'status': True,
-                    "message": "Posted"
-                }, 
-                status = 200
-            )
-             
     form = BlogPostForm(request.POST, request.FILES)
     if request.method == 'POST' and form.is_valid:
         temp = form.save(commit=False)
