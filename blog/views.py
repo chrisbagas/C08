@@ -18,6 +18,7 @@ def post(request, slug):
     response = {'post': post}
     return render(request, 'blog/post.html', response)
 
+@csrf_exempt
 @login_required(login_url='/login/')
 def add_post(request):
     form = BlogPostForm(request.POST, request.FILES)
@@ -31,6 +32,7 @@ def add_post(request):
     }
     return render(request, 'blog/add_post.html', context)
 
+@csrf_exempt
 @login_required(login_url='/login/')
 def edit_post(request, slug):
     postedit = BlogPost.objects.get(slug=slug)
@@ -47,6 +49,7 @@ def edit_post(request, slug):
     }
     return render(request, 'blog/edit_post.html', context)
 
+@csrf_exempt
 @login_required(login_url='/login/')
 def delete_post(request, slug):
     post = BlogPost.objects.get(slug=slug)
