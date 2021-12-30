@@ -39,6 +39,7 @@ def json(request):
     response = serializers.serialize('json', posts)
     return HttpResponse(response, content_type = 'application/json')
 
+@csrf_exempt
 def add(request):
     if request.method == 'POST':
         data = json.loads(request.body)
