@@ -26,6 +26,7 @@ def homeView(request):
     context = {'forums': Forum.objects.all()}
     return render(request, 'home.html', context)
 
+@csrf_exempt
 class createForum(View):
     def get(self, request):
         authorr = request.user
@@ -53,23 +54,10 @@ class createForum(View):
 
         return JsonResponse(data)
 
-# New
-@csrf_exempt
-def create_forum_flutter(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
-        title = data['title'][1:-1]
-        body = data['body'][1:-1]
-        forum = Forum(
-            title = title,
-            body = body,
-            author = request.user,
-        )
-        forum.save()
-        return JsonResponse({"status":"success"}, status=200)
-    else:
-        return JsonResponse({"status":"error"}, status=401)
+
     
+
+@csrf_exempt
 class createComment(View):
     def get(self, request):
         forumm = request.GET.get('forum', None)
@@ -94,6 +82,8 @@ class createComment(View):
         }
         return JsonResponse(data)
 
+
+@csrf_exempt
 class deleteForum(View):
     def get(self, request):
         pk = request.GET.get('pk', None)
@@ -124,3 +114,20 @@ def get_json(request):
         a.author_username = a.author.username
     response = serializers.serialize('json', forums)
     return HttpResponse(response, content_type = 'application/json')
+
+
+@csrf_exempt
+def create_forum_flutter(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        title = data['title']
+        body = data['body']
+        forum = Forum(
+            title=title,
+            body=body,
+            author=request.user,
+        )
+        forum.save()
+        return JsonResponse({"status": "success"})
+    else:
+        return JsonResponse({"status": "error"})
