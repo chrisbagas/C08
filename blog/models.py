@@ -11,7 +11,7 @@ class BlogPost(models.Model):
     body = RichTextField(blank=True, null=True)
     date_published = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)
 
     class Meta:
         ordering = ['-date_published']
@@ -19,6 +19,9 @@ class BlogPost(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(BlogPost, self).save(*args, **kwargs)
+
+    def natural_key(self):
+        return self.author
 
     def __str__(self):
         return self.title
