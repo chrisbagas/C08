@@ -1,10 +1,14 @@
+from datetime import datetime
 from django.contrib.auth import models
+from django.contrib.auth.decorators import login_required
 from django.core import serializers
-from django.http.response import HttpResponseRedirect, HttpResponse
+from django.http import request
+from django.http.response import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.views.generic import View
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from .models import Comment, Forum
+import json
 
 
 from django.contrib.humanize.templatetags.humanize import naturaltime
@@ -46,23 +50,39 @@ class createForum(View):
         data = {
             'forum': forum,
         }
+
         return JsonResponse(data)
 
+# New
+@csrf_exempt
+def create_forum_flutter(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        title = data['title'][1:-1]
+        body = data['body'][1:-1]
+        forum = Forum(
+            title = title,
+            body = body,
+            author = request.user,
+        )
+        forum.save()
+        return JsonResponse({"status":"success"}, status=200)
+    else:
+        return JsonResponse({"status":"error"}, status=401)
+    
 class createComment(View):
     def get(self, request):
+        forumm = request.GET.get('forum', None)
         authorr = request.user
-        titlee = request.GET.get('title', None)
         bodyy = request.GET.get('body', None)
         # time_created = models.DateTimeField(auto_now_add=True),
-        obj = Forum.objects.create(
+        obj = Comment.objects.create(
+            forum = forumm,
             author = authorr,
-            title = titlee,
             body = bodyy,
-            # time_created = time_created,
-            # time_modified = time_created,
         )
         
-        forum = {
+        comment = {
             'pk': obj.pk,
             'author': obj.author.username,
             'title': obj.titlee,
@@ -70,18 +90,26 @@ class createComment(View):
             'time_modified': naturaltime(obj.time_modified),
         }
         data = {
-            'forum': forum,
+            'comment': comment,
         }
         return JsonResponse(data)
 
 class deleteForum(View):
-    def  get(self, request):
+    def get(self, request):
         pk = request.GET.get('pk', None)
         Forum.objects.get(pk=pk).delete()
         data = {
             'deleted': True
         }
         return JsonResponse(data)
+
+
+@login_required(login_url='/login/')
+def delete_forum(request, pk):
+    forum = Forum.objects.get(pk=pk)
+    if (forum.author == request.user):
+        forum.delete()
+    return redirect('/forum')
 
 def detailView(request, pk):
     context = {
@@ -90,7 +118,9 @@ def detailView(request, pk):
     return render(request, 'forum_detail.html', context)
 
 @csrf_exempt
-def json(request):
+def get_json(request):
     forums = Forum.objects.all()
-    response = serializers.serialize('json', forums, fields=['title', 'author', 'body', 'time_created', 'time_modified'])
+    for a in forums:
+        a.author_username = a.author.username
+    response = serializers.serialize('json', forums)
     return HttpResponse(response, content_type = 'application/json')

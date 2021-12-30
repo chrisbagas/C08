@@ -6,6 +6,7 @@ from django.db.models.deletion import CASCADE
 class Forum(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author_username = models.CharField(max_length=100, blank=True, null=True)
     body = models.TextField()
     time_created = models.DateTimeField(auto_now_add=True)
     time_modified = models.DateTimeField(auto_now=True)
