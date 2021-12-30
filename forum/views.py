@@ -109,7 +109,7 @@ def detailView(request, pk):
 
 @csrf_exempt
 def get_json(request):
-    forums = Forum.objects.all().order_by("time_modified")
+    forums = Forum.objects.all().order_by("-time_modified")
     for a in forums:
         a.author_username = a.author.username
     response = serializers.serialize('json', forums)
