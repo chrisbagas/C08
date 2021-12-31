@@ -77,7 +77,8 @@ def edit_profile_flutter(request):
 
             response = {
                 'msg':  'Update profil Anda berhasil disimpan!',
-                'id' : 1
+                'id' : 1,
+                'status': 'success'
             }
 
     return JsonResponse(response)
