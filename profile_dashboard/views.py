@@ -115,4 +115,6 @@ def edit_profile_flutter_noPic(request):
                 'status': 'success'
             }
 
-    return JsonResponse(response)
+        return JsonResponse(response)
+    else:
+        return JsonResponse({"status": "error"})
