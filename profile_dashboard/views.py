@@ -39,7 +39,7 @@ def edit_profile(request):
 @csrf_exempt
 def get_profile_info_flutter(request, uname):
     user = User.objects.get(username = uname)
-    profile = user.profile
+    profile = Profile.objects.get(user = user)
 
     data = serializers.serialize('json', [user, profile])
     return HttpResponse(data, content_type="application/json")
