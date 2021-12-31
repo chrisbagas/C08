@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 import base64
 import json
+from datetime import datetime
 from django.core.files.base import ContentFile
 from .models import Event
 from .forms import EventForm
@@ -46,7 +47,9 @@ def add(request):
         data = json.loads(request.body)
         title = data['title']
         tanggal = data['tanggal']
+        tanggal = datetime.strptime(tanggal, '%m/%d/%Y')
         waktu = data['waktu']
+        waktu = datetime.strptime(waktu, '%I:%M%p')
         media = data['media']
         tipe = data['tipe']
         Url = data['url']
