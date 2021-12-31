@@ -37,7 +37,7 @@ def event_form(request):
 
 @csrf_exempt
 def jsonget(request):
-    posts = Event.objects.all()
+    posts = Event.objects.all().order_by('-created')
     response = serializers.serialize('json', posts)
     return HttpResponse(response, content_type = 'application/json')
 
