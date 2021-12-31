@@ -93,12 +93,14 @@ class deleteForum(View):
         }
         return JsonResponse(data)
 
-
+@csrf_exempt
 @login_required(login_url='/login/')
 def delete_forum(request, pk):
     forum = Forum.objects.get(pk=pk)
-    if (forum.author == request.user):
+    print(pk)
+    if (request.method == 'POST'):
         forum.delete()
+        return HttpResponse(200);
     return redirect('/forum')
 
 def detailView(request, pk):

@@ -328,15 +328,14 @@
     var action = confirm("Are you sure you want to delete this forum?");
     if (action != false) {
       $.ajax({
-        url: "delete",
+        type: 'POST',
+        url: pk+'/delete',
         data: {
           pk: pk,
         },
         dataType: "json",
         success: function (data) {
-          if (data.deleted) {
-            $("#forum-list #forum-" + pk).remove();
-          }
+          $("#forum-list #forum-" + pk).remove();
         },
       });
     }

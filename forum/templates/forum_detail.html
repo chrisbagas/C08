@@ -72,7 +72,7 @@
             </div>
             
             <div class="col-12 text-end">
-              {% if forum.author == user %}
+              {% if forum.author == user or user.is_superuser %}
 
               <!-- edit button -->
               <button type="button" class="btn btn-sm btn-outline-primary edit-btn m-0 px-1 py-0" id="edit-btn"
