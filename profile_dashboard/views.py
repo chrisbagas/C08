@@ -82,3 +82,37 @@ def edit_profile_flutter(request):
             }
 
     return JsonResponse(response)
+
+@csrf_exempt
+def edit_profile_flutter_noPic(request):
+    response = {}
+    if request.method == 'POST':
+        data = json.loads(request.body.decode('utf-8'))
+        firstName = data['firstName']  
+        lastName = data['lastName']  
+        username = data['username']
+        bio = data['bio']
+
+        if firstName and lastName and username and bio:
+            profile = Profile.objects.get(user = User.objects.get(username = username))
+            u_form = UserUpdateForm(request.POST or None, instance=profile.user)
+            p_form = ProfileUpdateForm(request.POST or None,
+                                        request.FILES or None,
+                                        instance=profile)
+            tmp_uform = u_form.save(commit = False)
+            tmp_pform = p_form.save(commit = False)
+
+            tmp_uform.firstName = firstName
+            tmp_uform.lastName = lastName
+            tmp_pform.bio = bio
+
+            tmp_pform.save()
+            tmp_uform.save()
+
+            response = {
+                'msg':  'Update profil Anda berhasil disimpan!',
+                'id' : 1,
+                'status': 'success'
+            }
+
+    return JsonResponse(response)
