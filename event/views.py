@@ -49,7 +49,7 @@ def add(request):
         tanggal = data['tanggal']
         tanggal = datetime.strptime(tanggal, '%m/%d/%Y')
         waktu = data['waktu']
-        waktu = datetime.strptime(waktu, '%I:%M%p')
+        waktu = datetime.strptime(waktu, '%I:%M %p')
         media = data['media']
         tipe = data['tipe']
         Url = data['url']
