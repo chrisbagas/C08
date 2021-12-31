@@ -57,11 +57,8 @@ def add(request):
         file2 = data['file2']
         name2 = data['name2']
         image2 = ContentFile(base64.b64decode(file2),name2)
-        try:
-            eventform = Event(Nama=title, Tanggal=tanggal, Waktu = waktu, Media = media, Tipe = tipe, url = Url, Deskripsi = deskripsi, Card_Image = image1, Page_Image = image2)
-            eventform.save()
-            return JsonResponse({"status": "success"}, status=200)
-        except:
-            return JsonResponse({"status": "error"}, status=401)
+        eventform = Event(Nama=title, Tanggal=tanggal, Waktu = waktu, Media = media, Tipe = tipe, url = Url, Deskripsi = deskripsi, Card_Image = image1, Page_Image = image2)
+        eventform.save()
+        return JsonResponse({"status": "success"}, status=200)
     else:
         return JsonResponse({"status": "error"}, status=401)
