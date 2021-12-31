@@ -170,8 +170,9 @@ def details_json(request, survey_id):
 
     dc['title'] = survey.title
     dc['description'] = survey.description
-    dc['creator'] = survey.creator.username
-    dc['survey_count'] = survey.get_survey_count()
+    dc['creator'] = str(survey.creator)
+    dc['pub_date'] = str(survey.pub_date)
+    dc['survey_count'] = str(survey.get_survey_count())
 
     ls.append(dc)
     details = json.dumps(ls)

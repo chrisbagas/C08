@@ -19,6 +19,6 @@ urlpatterns = [
     path('<int:survey_id>/get-options/', options_json, name='get_options'),
     path('<int:survey_id>/edit-from-flutter/', edit_from_flutter, name='edit_from_flutter'),
     path('<int:survey_id>/delete-from-flutter/', delete_from_flutter, name='delete_from_flutter'),
-    path('<int:survey_id>/vote-from-flutter', vote_from_flutter, name='vote_from_flutter'),
+    path('<int:survey_id>/vote-from-flutter/', vote_from_flutter, name='vote_from_flutter'),
     path('<int:survey_id>/edit-from-flutter/add/', add_option_from_flutter, name='add_option_from_flutter'),
 ]
