@@ -1,10 +1,12 @@
 from django.contrib import messages
-from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, redirect, render
-from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from django.core import serializers
+from django.http import JsonResponse, HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.csrf import csrf_exempt
 from .forms import AddOptionForm, CreateSurveyForm, EditSurveyForm
 from .models import Option, Survey, Vote
+import json
 
 
 def lists(request):
@@ -93,7 +95,7 @@ def delete(request, survey_id):
 def add_option(request, survey_id):
     survey = get_object_or_404(Survey, pk=survey_id)
     if request.user != survey.creator:
-        return redirect('\survey')
+        return redirect('/survey')
 
     if request.method == 'POST':
         form = AddOptionForm(request.POST)
@@ -101,7 +103,7 @@ def add_option(request, survey_id):
             new_option = form.save(commit=False)
             new_option.survey = survey
             new_option.save()
-            return redirect()
+            return redirect('edit', survey_id)
     else:
         form = AddOptionForm()
 
@@ -152,3 +154,106 @@ def search_results(request):
 
         return JsonResponse({'data': res})
     return JsonResponse({})
+
+
+def lists_json(request):
+    survey_list = Survey.objects.all()
+    for survey in survey_list:
+        survey.creator_username = survey.creator.username
+    lists = serializers.serialize('json', survey_list)
+    return HttpResponse(lists, content_type='application/json')
+
+def details_json(request, survey_id):
+    survey = Survey.objects.get(pk=survey_id)
+    ls = []
+    dc = {}
+
+    dc['title'] = survey.title
+    dc['description'] = survey.description
+    dc['creator'] = str(survey.creator)
+    dc['pub_date'] = str(survey.pub_date)
+    dc['survey_count'] = str(survey.get_survey_count())
+
+    ls.append(dc)
+    details = json.dumps(ls)
+
+    return HttpResponse(details, content_type='application/json')
+
+def options_json(request, survey_id):
+    survey = Survey.objects.get(pk=survey_id)
+    ls = []
+
+    for option in survey.option_set.all():
+        ls.append({'option' : option.text, 'option_count' : option.get_option_count()})
+
+    options = json.dumps(ls)
+    
+    return HttpResponse(options, content_type='application/json')
+
+
+@csrf_exempt
+def create_from_flutter(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        title = data['title']
+        description = data['description']
+
+        survey = Survey(
+            title = title,
+            description = description,
+            creator = request.user,
+        )
+        survey.save()
+
+        return JsonResponse({'status': 'success'}, status=200)
+
+    return JsonResponse({'status': 'error'}, status=401)
+
+@csrf_exempt
+def edit_from_flutter(request, survey_id):
+    if request.method == 'POST':
+        survey = Survey.objects.get(pk=survey_id)
+
+        title = json.loads(request.body)['title']
+        description = json.loads(request.body)['description']
+
+        survey.title = title
+        survey.description = description
+
+        survey.save()
+
+        return JsonResponse({'status': 'success'}, status=200)
+
+    return JsonResponse({'status': 'error'}, status=401)
+
+@csrf_exempt
+def delete_from_flutter(request, survey_id):
+    survey = Survey.objects.get(pk=survey_id)
+    survey.delete()
+    return HttpResponse("")
+
+@csrf_exempt
+def add_option_from_flutter(request, survey_id):
+    if request.method == 'POST':
+        survey = Survey.objects.get(pk=survey_id)
+        text = json.loads(request.body)['text']
+        
+        option = Option(
+            survey = survey,
+            text = text,
+        )
+        option.save()
+
+        return JsonResponse({'status': 'success'}, status=200)
+
+    return JsonResponse({'status': 'error'}, status=401)
+
+@csrf_exempt
+def vote_from_flutter(request, survey_id):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        user_vote = data['vote']
+
+        return JsonResponse({'status': 'success'}, status=200)
+
+    return JsonResponse({'status': 'error'}, status=401)
