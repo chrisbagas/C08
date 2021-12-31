@@ -95,15 +95,16 @@ def edit_profile_flutter_noPic(request):
 
         if firstName and lastName and username and bio:
             profile = Profile.objects.get(user = User.objects.get(username = username))
-            u_form = UserUpdateForm(request.POST or None, instance=profile.user)
+            user = User.objects.get(username = username)
+            u_form = UserUpdateForm(request.POST or None, instance=user)
             p_form = ProfileUpdateForm(request.POST or None,
                                         request.FILES or None,
                                         instance=profile)
             tmp_uform = u_form.save(commit = False)
             tmp_pform = p_form.save(commit = False)
 
-            tmp_uform.firstName = firstName
-            tmp_uform.lastName = lastName
+            tmp_uform.first_name = firstName
+            tmp_uform.last_name = lastName
             tmp_pform.bio = bio
 
             tmp_pform.save()
