@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 import base64
+import json
 from django.core.files.base import ContentFile
 from .models import Event
 from .forms import EventForm
@@ -34,7 +35,7 @@ def event_form(request):
     return render(request,'Event_Form.html', response) #Return NoteForm ke dalam bentuk html
 
 @csrf_exempt
-def json(request):
+def jsonget(request):
     posts = Event.objects.all()
     response = serializers.serialize('json', posts)
     return HttpResponse(response, content_type = 'application/json')
