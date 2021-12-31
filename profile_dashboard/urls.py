@@ -5,5 +5,5 @@ urlpatterns = [
     path('', profile, name='profile'),
     path('edit/', edit_profile, name='edit_profile'),
     path('user/<uname>', get_profile_info_flutter),
-    path('profile/flutter/edit/', edit_profile_flutter)
+    path('edit/flutter/', edit_profile_flutter)
 ]
