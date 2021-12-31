@@ -20,6 +20,9 @@ class Survey(models.Model):
     def get_survey_count(self):
         return self.vote_set.count()
 
+    def natural_key(self):
+        return self.creator
+
     def __str__(self):
         return self.title
 

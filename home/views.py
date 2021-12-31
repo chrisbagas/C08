@@ -6,6 +6,7 @@ from django.core import serializers
 
 from .forms import FeedbackForm
 from .models import FeedbackModel
+import json
 
 
 def index(request):
@@ -30,7 +31,7 @@ def feedback(request):
 
 
 @csrf_exempt
-def json(request):
+def get_on_json(request):
     posts = FeedbackModel.objects.all()
     response = serializers.serialize('json', posts)
     return HttpResponse(response, content_type='application/json')
