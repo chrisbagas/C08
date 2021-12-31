@@ -156,11 +156,14 @@ def search_results(request):
     return JsonResponse({})
 
 
+@csrf_exempt
 def lists_json(request):
     survey_list = Survey.objects.all()
     lists = serializers.serialize('json', survey_list, use_natural_foreign_keys=True)
     return HttpResponse(lists, content_type='application/json')
 
+
+@csrf_exempt
 def details_json(request, survey_id):
     survey = Survey.objects.get(pk=survey_id)
     ls = []
@@ -177,6 +180,8 @@ def details_json(request, survey_id):
 
     return HttpResponse(details, content_type='application/json')
 
+
+@csrf_exempt
 def options_json(request, survey_id):
     survey = Survey.objects.get(pk=survey_id)
     ls = []
