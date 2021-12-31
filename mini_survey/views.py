@@ -158,9 +158,7 @@ def search_results(request):
 
 def lists_json(request):
     survey_list = Survey.objects.all()
-    for survey in survey_list:
-        survey.creator_username = survey.creator.username
-    lists = serializers.serialize('json', survey_list)
+    lists = serializers.serialize('json', survey_list, use_natural_foreign_keys=True)
     return HttpResponse(lists, content_type='application/json')
 
 def details_json(request, survey_id):
