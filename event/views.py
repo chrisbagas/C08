@@ -62,3 +62,5 @@ def add(request):
             return JsonResponse({"status": "success"}, status=200)
         except:
             return JsonResponse({"status": "error"}, status=401)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
